@@ -25,13 +25,27 @@ A portion of the questions are asked during each round (or administration) of th
 
 The ESS includes data at the level of the survey respondent and is generally well-maintained; for example, almost all features are encoded numerically thanks to survey questions that lend themselves to ordinal responses, and those numbers indicating a missing or refused response are clearly specified by robust data dictionaries. We therefore suspect data cleaning to be minimal. Pre-processing, meanwhile, will likely focus on (1) identifying and filtering to columns of interest and (2) grouping and aggregating by gender, age, and geography. The former can be handled via the ESS’ online portal while the latter is simple to code.
 
-[Link](https://drive.switch.ch/index.php/s/zUVrlpnyXFoRs5b) to all variables dataset
+[Link](https://drive.switch.ch/index.php/s/zUVrlpnyXFoRs5b) to all variables in the dataset
 
 ### Problematic
 
 > Frame the general topic of your visualization and the main axis that you want to develop.
 > - What am I trying to show with my visualization?
 > - Think of an overview for the project, your motivation, and the target audience.
+
+Our inspiration stems from an Economist article entitled “Why young men and women are drifting apart”, which explores differences in (especially political) perspectives between young men and women. The analysis is backed by data from the European Social Survey (ESS). 
+
+We will (1) emphasize The Economist’s analysis regarding education, gender, and political views, and (2) communicate age- or gender-based differences in other factors possibly manifesting ideological divides. These ‘other factors’ include *habits* like intensity of media consumption, intensity of digital communication, and religious activity, or *life experiences* such as household composition, financial vulnerability, mental stress, and geographic situation (rural or urban, nation). Naturally, education and age will play a crucial role in our visualization just as they did in The Economist’s article. 
+
+The *ideological outcomes* we will investigate include placement on the liberal-conservative scale, tolerance for immigrants and LGBTQ lifestyles, climate change beliefs, trust in politicians, democracy, and institutions, and participation in political activism. This set both captures and expands the focus of The Economist’s analysis.
+
+Our visualization will be geared toward the general public, and especially those interested in societal opinions. It will be accessible, clear, and, given the fraught nature of political discourse, as inoffensive as possible. Our story will shed light on the direction of culture and political outcomes at the broadest level; accordingly, we want to impart an understanding of humanity’s direction while ensuring our audience is willing to share this resource with others. 
+
+Summarizing questions:
+
+- How do social norms and political attitudes vary by generation and gender?
+- Which habits (eg media consumption) or life situations (eg financial vulnerability) might create these differences?
+- How can we design a universally inoffensive visualization on this topic?
 
 ### Exploratory Data Analysis
 
