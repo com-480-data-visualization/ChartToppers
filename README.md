@@ -54,7 +54,7 @@ Summarizing questions:
 
 Data for the ESS has been collected every two years between 2002 and 2020 (inclusive), constituting 10 different rounds. The composition of participating countries over time can be seen below; 39 countries participated at least once while 15 participated in each round.
 
-![Untitled]((https://github.com/com-480-data-visualization/ChartToppers/m1_images/Untitled \1).png)
+![alt text](https://github.com/com-480-data-visualization/ChartToppers/master/m1_images/participants.png "participants")
 
 All categorical variables are encoded numerically. Furthermore, each variable has a codebook to help us interpret the values. For one example, for the variable “highest level of education obtained” (*edulvla* in the dataset), we have the following values:
 
