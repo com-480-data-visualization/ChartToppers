@@ -85,7 +85,7 @@ Most variables are missing data for few to no respondents, though a nonnegligibl
 
 ![alt text](https://github.com/com-480-data-visualization/ChartToppers/raw/master/m1_images/missings.png "missings")
 
-Finally, we show average of self-reported political leanings (lower = more liberal) for women and men to demonstrate differences:
+Finally, we show average of self-reported political leanings (lower = more liberal) for women and men as a proof of concept:
 
 ![alt text](https://github.com/com-480-data-visualization/ChartToppers/raw/master/m1_images/ideological_differences.png "ideological_differences")
 
