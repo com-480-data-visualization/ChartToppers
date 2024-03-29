@@ -25,7 +25,7 @@ A portion of the questions are asked during each round (or administration) of th
 
 The ESS includes data at the level of the survey respondent and is generally well-maintained; for example, almost all features are encoded numerically thanks to survey questions that lend themselves to ordinal responses, and those numbers indicating a missing or refused response are clearly specified by robust data dictionaries. We therefore suspect data cleaning to be minimal. Pre-processing, meanwhile, will likely focus on (1) identifying and filtering to columns of interest and (2) grouping and aggregating by gender, age, and geography. The former can be handled via the ESS’ online portal while the latter is simple to code.
 
-Link to all variables dataset: https://drive.switch.ch/index.php/s/zUVrlpnyXFoRs5b
+[Link](https://drive.switch.ch/index.php/s/zUVrlpnyXFoRs5b) to all variables dataset
 
 ### Problematic
 
