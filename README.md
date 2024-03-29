@@ -113,12 +113,12 @@ Our project will employ maps enhanced with special colors and shapes to undersco
 
 ### M1 Sources
 
-XX3: *Measurement instruments for the Social Sciences*. BioMed Central. (n.d.). https://measurementinstrumentssocialscience.biomedcentral.com/ess
-XX4: European Social Survey (ESS). (2020). The Human Values Scale Findings from the European Social Survey. ESS.
-XX5: *Why Eu regions are redrawing their borders*. The Pudding. (n.d.). https://pudding.cool/2019/04/eu-regions/ 
-XX6: Iversen, K. (2017, August 24). *7 data visualizations that opened the world’s eyes to gender inequality*. Medium. https://medium.com/@Katja_Iversen/7-data-visualizations-that-opened-the-worlds-eyes-to-gender-inequality-75ee03b60589
-XX7: *OECD regional well-being - how is life?*. Being. https://www.oecdregionalwellbeing.org/
-XX8: https://datatopics.worldbank.org/sdgatlas/goal-5-gender-equality?lang=en
+- XX3: *Measurement instruments for the Social Sciences*. BioMed Central. (n.d.). https://measurementinstrumentssocialscience.biomedcentral.com/ess
+- XX4: European Social Survey (ESS). (2020). The Human Values Scale Findings from the European Social Survey. ESS.
+- XX5: *Why Eu regions are redrawing their borders*. The Pudding. (n.d.). https://pudding.cool/2019/04/eu-regions/ 
+- XX6: Iversen, K. (2017, August 24). *7 data visualizations that opened the world’s eyes to gender inequality*. Medium. https://medium.com/@Katja_Iversen/7-data-visualizations-that-opened-the-worlds-eyes-to-gender-inequality-75ee03b60589
+- XX7: *OECD regional well-being - how is life?*. Being. https://www.oecdregionalwellbeing.org/
+- XX8: https://datatopics.worldbank.org/sdgatlas/goal-5-gender-equality?lang=en
 
 ## Milestone 2 (26th April, 5pm)
 
