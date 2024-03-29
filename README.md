@@ -109,7 +109,18 @@ While journalists do report on this data, they typically do so only through the 
 
 **Inspiration**
 
-Our project will employ maps enhanced with special colors and shapes to underscore time variant findings. We will develop sliders that highlight ideological differences as well as trends in time. The visualization will be developed in the style of Figure 1 below, while differentials will be transformed and presented in the style of Figure 2, with country, age, and gender segmentation capability. [XX5] Another source of inspiration is the flower model applied by the OECD on quality of life indices (Figure 3). [XX6, XX7] We like how detailed information stems from an interactive map inside a simple site structure. Additionally, the idea of flower stem length depending on index size is stimulating (Figure 4). Finally, we will consider using the idea of the interactive text boxes emphasizing the difference between genders (see Figure 6). [XX8]
+Our project will employ maps enhanced with special colors and shapes to underscore time variant findings. We will develop sliders that highlight ideological differences as well as trends in time. The visualization will be developed in the style of Figure 1 below, while differentials will be transformed and presented in the style of Figure 2, with country, age, and gender segmentation capability. [XX5] Another source of inspiration is the flower model applied by the OECD on quality of life indices (Figure 3). [XX6, XX7] We like how detailed information stems from an interactive map inside a simple site structure. Additionally, the idea of flower stem length depending on index size is stimulating (Figure 4). Finally, we will consider using the idea of the interactive text boxes emphasizing the difference between genders (see Figure 5). [XX8]
+
+Figure 1:
+![alt text](https://github.com/com-480-data-visualization/ChartToppers/raw/master/m1_images/insp1.png "Figure 1")
+Figure 2:
+![alt text](https://github.com/com-480-data-visualization/ChartToppers/raw/master/m1_images/insp2.png "Figure 2")
+Figure 3:
+![alt text](https://github.com/com-480-data-visualization/ChartToppers/raw/master/m1_images/insp3.png "Figure 3")
+Figure 4:
+![alt text](https://github.com/com-480-data-visualization/ChartToppers/raw/master/m1_images/insp4.png "Figure 4")
+Figure 5:
+![alt text](https://github.com/com-480-data-visualization/ChartToppers/raw/master/m1_images/insp5.png "Figure 5")
 
 ### M1 Sources
 
