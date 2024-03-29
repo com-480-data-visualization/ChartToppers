@@ -113,6 +113,8 @@ Our project will employ maps enhanced with special colors and shapes to undersco
 
 ### M1 Sources
 
+- XX1: *ESS Data Portal*. European Social Survey. **https://ess.sikt.no/en/?tab=overview
+- XX2: "Why young men and women are drifting apart" The Economist, Mar 13th 2024, https://www.economist.com/international/2024/03/13/why-the-growing-gulf-between-young-men-and-women
 - XX3: *Measurement instruments for the Social Sciences*. BioMed Central. (n.d.). https://measurementinstrumentssocialscience.biomedcentral.com/ess
 - XX4: European Social Survey (ESS). (2020). The Human Values Scale Findings from the European Social Survey. ESS.
 - XX5: *Why Eu regions are redrawing their borders*. The Pudding. (n.d.). https://pudding.cool/2019/04/eu-regions/ 
