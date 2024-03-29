@@ -114,15 +114,23 @@ Our project will employ maps enhanced with special colors and shapes to undersco
 Figure 1:
 
 ![alt text](https://github.com/com-480-data-visualization/ChartToppers/raw/master/m1_images/insp1.png "Figure 1")
+
+
 Figure 2:
 
 ![alt text](https://github.com/com-480-data-visualization/ChartToppers/raw/master/m1_images/insp2.png "Figure 2")
+
+
 Figure 3:
 
 ![alt text](https://github.com/com-480-data-visualization/ChartToppers/raw/master/m1_images/insp3.png "Figure 3")
+
+
 Figure 4:
 
 ![alt text](https://github.com/com-480-data-visualization/ChartToppers/raw/master/m1_images/insp4.png "Figure 4")
+
+
 Figure 5:
 
 ![alt text](https://github.com/com-480-data-visualization/ChartToppers/raw/master/m1_images/insp5.png "Figure 5")
