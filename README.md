@@ -17,7 +17,7 @@
 
 ### Dataset
 
-We will use the European Social Survey (ESS) [data portal](https://ess.sikt.no/en/?tab=overview) to extract a timeseries view of European citizens’ views on politics, societal norms, and more, while stratifying by gender in particular. Our goal is to expand on work conducted by The Economist, The Financial Times, and other publications in exploring a recent trend of divergence in political and social opinion between the sexes.
+We will use the European Social Survey (ESS) [data portal](https://ess.sikt.no/en/?tab=overview) to extract a timeseries view of European citizens’ views on politics, societal norms, and more, while stratifying by gender in particular. [XX1] Our goal is to expand on work conducted by The Economist, The Financial Times, and other publications in exploring a recent trend of divergence in political and social opinion between the sexes.
 
 The ESS is a biennial survey of randomly sampled citizens across 31 countries. It is meant to capture the sociopolitical opinions and conditions of private-household residents aged 15 and up in participating countries. The individual respondents are not stable year-to-year (it is not panel data, in other words), but rather sampled randomly and, for purposes of aggregation, assigned weights according to how representative they are of their country’s general population. 
 
@@ -33,7 +33,7 @@ The ESS includes data at the level of the survey respondent and is generally wel
 > - What am I trying to show with my visualization?
 > - Think of an overview for the project, your motivation, and the target audience.
 
-Our inspiration stems from an Economist article entitled “Why young men and women are drifting apart”, which explores differences in (especially political) perspectives between young men and women. The analysis is backed by data from the European Social Survey (ESS). 
+Our inspiration stems from an Economist article entitled “Why young men and women are drifting apart”, which explores differences in (especially political) perspectives between young men and women. [XX2] The analysis is backed by data from the European Social Survey (ESS). 
 
 We will (1) emphasize The Economist’s analysis regarding education, gender, and political views, and (2) communicate age- or gender-based differences in other factors possibly manifesting ideological divides. These ‘other factors’ include *habits* like intensity of media consumption, intensity of digital communication, and religious activity, or *life experiences* such as household composition, financial vulnerability, mental stress, and geographic situation (rural or urban, nation). Naturally, education and age will play a crucial role in our visualization just as they did in The Economist’s article. 
 
