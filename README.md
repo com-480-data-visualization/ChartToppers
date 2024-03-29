@@ -2,9 +2,10 @@
 
 | Student's name | SCIPER |
 | -------------- | ------ |
-|Davide Romano||
-|Kaede Johnson|357472|
 |Nil Yagmur Ilba|374228|
+|Kaede Johnson|357472|
+|Davide Romano|354025|
+
 
 [Milestone 1](#milestone-1) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
 
