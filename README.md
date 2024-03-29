@@ -52,6 +52,37 @@ Summarizing questions:
 > Pre-processing of the data set you chose
 > - Show some basic statistics and get insights about the data
 
+Data for the ESS has been collected every two years between 2002 and 2020 (inclusive), constituting 10 different rounds. The composition of participating countries over time can be seen below; 39 countries participated at least once while 15 participated in each round.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/b1ee38ce-c971-4862-8049-ee7bd9b696ca/9d125203-bd44-496e-95e7-ed4e2b491267/Untitled.png)
+
+All categorical variables are encoded numerically. Furthermore, each variable has a codebook to help us interpret the values. For one example, for the variable “highest level of education obtained” (*edulvla* in the dataset), we have the following values:
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/b1ee38ce-c971-4862-8049-ee7bd9b696ca/9144e46d-9f6b-465c-ad9a-0993b0b1bd94/Untitled.png)
+
+Most variables follow a similar encoding. As a result, we can retain variables of interest and calculate their availability over time. The following is a list of the variables we are currently interested in:
+
+1. Media consumption: newspol, newsppol, newsptot, rdpol, rdtot, tvpol, tvtot
+2. Digital communication: netuse, netusoft, netustm
+3. Religious activity: pray, rlgatnd, rlgdgr, rlgblg, rlgblge
+4. Household composition: hhmmb, gndr*i* (*i* = person i in respondent’s household)
+5. Financial vulnerability: hincfel, hinctnt, uemp12m
+6. Mental Stress: hlthhmp, inmdisc, brghmef, crvctef, happy, health
+7. Social life/Loneliness: inprdsc, sclact, sclmeet
+8. Geographic Situation: region, region*cc* (*cc =* country code)
+9. Gender: gndr
+10. Age: yrbrn
+11. Education: edlv*cc*, edlvp*cc* (*cc =* country code)
+12. Ideological Outcomes:
+    1. Liberal-Conservative Scale: lrscale
+    2. Tolerance for Immigrants: imwbcnt, imueclt, imdfetn, impcntr
+    3. Tolerance for LGBTQ lifestyles: freehms, hmsacld, hmsfmlsh
+    4. Climate Change Beliefs: ccnthum, ccrdprs, wrclmch
+    5. Trust in Governance: trstlgl, trstplc, trstprl, trstplt
+    6. Political Activism: badge, bctprd, pbldmn
+
+Most variables are missing data for few to no respondents, though a nonnegligible portion have up to 80% of data missing (see histogram below)**.** We may add other variables to this set, in particular if stratification along gender and age lines could produce further interesting divisions.
+
 ### Related work
 
 
