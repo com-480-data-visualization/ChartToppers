@@ -17,7 +17,7 @@
 
 ### Dataset
 
-We will use the European Social Survey (ESS) [data portal](https://ess.sikt.no/en/?tab=overview) to extract a timeseries view of European citizens’ views on politics, societal norms, and more, while stratifying by gender in particular. [XX1] Our goal is to expand on work conducted by The Economist, The Financial Times, and other publications in exploring a recent trend of divergence in political and social opinion between the sexes.
+We will use the European Social Survey (ESS) [data portal](https://ess.sikt.no/en/?tab=overview) to extract a timeseries view of European citizens’ views on politics, societal norms, and more, while stratifying by gender in particular. [1] Our goal is to expand on work conducted by The Economist, The Financial Times, and other publications in exploring a recent trend of divergence in political and social opinion between the sexes.
 
 The ESS is a biennial survey of randomly sampled citizens across 31 countries. It is meant to capture the sociopolitical opinions and conditions of private-household residents aged 15 and up in participating countries. The individual respondents are not stable year-to-year (it is not panel data, in other words), but rather sampled randomly and, for purposes of aggregation, assigned weights according to how representative they are of their country’s general population. 
 
@@ -33,7 +33,7 @@ The ESS includes data at the level of the survey respondent and is generally wel
 > - What am I trying to show with my visualization?
 > - Think of an overview for the project, your motivation, and the target audience.
 
-Our inspiration stems from an Economist article entitled “Why young men and women are drifting apart”, which explores differences in (especially political) perspectives between young men and women. [XX2] The analysis is backed by data from the European Social Survey (ESS). 
+Our inspiration stems from an Economist article entitled “Why young men and women are drifting apart”, which explores differences in (especially political) perspectives between young men and women. [2] The analysis is backed by data from the European Social Survey (ESS). 
 
 We will (1) emphasize The Economist’s analysis regarding education, gender, and political views, and (2) communicate age- or gender-based differences in other factors possibly manifesting ideological divides. These ‘other factors’ include *habits* like intensity of media consumption, intensity of digital communication, and religious activity, or *life experiences* such as household composition, financial vulnerability, mental stress, and geographic situation (rural or urban, nation). Naturally, education and age will play a crucial role in our visualization just as they did in The Economist’s article. 
 
@@ -101,7 +101,7 @@ Finally, we show average of self-reported political leanings (lower = more liber
 
 **Prior Uses**
 
-The ESS dataset is used by its providers and the academic community for socio-political and economic analyses, including a special issue on survey methodology [^3, XX4]. Apart from academia, journalists also analyze data releases; The Economist article mentioned in section 2, with its spare and austere visualizations, is one such example of how ESS data is employed.
+The ESS dataset is used by its providers and the academic community for socio-political and economic analyses, including a special issue on survey methodology [3, 4]. Apart from academia, journalists also analyze data releases; The Economist article mentioned in section 2, with its spare and austere visualizations, is one such example of how ESS data is employed.
 
 **Originality**
 
@@ -109,7 +109,7 @@ While journalists do report on this data, they typically do so only through the 
 
 **Inspiration**
 
-Our project will employ maps enhanced with special colors and shapes to underscore time variant findings. We will develop sliders that highlight ideological differences as well as trends in time. The visualization will be developed in the style of Figure 1 below, while differentials will be transformed and presented in the style of Figure 2, with country, age, and gender segmentation capability. [XX5] Another source of inspiration is the flower model applied by the OECD on quality of life indices (Figure 3). [XX6, XX7] We like how detailed information stems from an interactive map inside a simple site structure. Additionally, the idea of flower stem length depending on index size is stimulating (Figure 4). Finally, we will consider using the idea of the interactive text boxes emphasizing the difference between genders (see Figure 5). [XX8]
+Our project will employ maps enhanced with special colors and shapes to underscore time variant findings. We will develop sliders that highlight ideological differences as well as trends in time. The visualization will be developed in the style of Figure 1 below, while differentials will be transformed and presented in the style of Figure 2, with country, age, and gender segmentation capability. [5] Another source of inspiration is the flower model applied by the OECD on quality of life indices (Figure 3). [6, 7] We like how detailed information stems from an interactive map inside a simple site structure. Additionally, the idea of flower stem length depending on index size is stimulating (Figure 4). Finally, we will consider using the idea of the interactive text boxes emphasizing the difference between genders (see Figure 5). [8]
 
 Figure 1:
 
@@ -137,14 +137,14 @@ Figure 5:
 
 ### M1 Sources
 
-- XX1: *ESS Data Portal*. European Social Survey. https://ess.sikt.no/en/?tab=overview
-- XX2: "Why young men and women are drifting apart" The Economist, Mar 13th 2024, https://www.economist.com/international/2024/03/13/why-the-growing-gulf-between-young-men-and-women
-- [^3]: *Measurement instruments for the Social Sciences*. BioMed Central. (n.d.). https://measurementinstrumentssocialscience.biomedcentral.com/ess
-- XX4: European Social Survey (ESS). (2020). The Human Values Scale Findings from the European Social Survey. ESS.
-- XX5: *Why Eu regions are redrawing their borders*. The Pudding. (n.d.). https://pudding.cool/2019/04/eu-regions/ 
-- XX6: Iversen, K. (2017, August 24). *7 data visualizations that opened the world’s eyes to gender inequality*. Medium. https://medium.com/@Katja_Iversen/7-data-visualizations-that-opened-the-worlds-eyes-to-gender-inequality-75ee03b60589
-- XX7: *OECD regional well-being - how is life?*. Being. https://www.oecdregionalwellbeing.org/
-- XX8: https://datatopics.worldbank.org/sdgatlas/goal-5-gender-equality?lang=en
+- 1: *ESS Data Portal*. European Social Survey. https://ess.sikt.no/en/?tab=overview
+- 2: "Why young men and women are drifting apart" The Economist, Mar 13th 2024, https://www.economist.com/international/2024/03/13/why-the-growing-gulf-between-young-men-and-women
+- 3: *Measurement instruments for the Social Sciences*. BioMed Central. (n.d.). https://measurementinstrumentssocialscience.biomedcentral.com/ess
+- 4: European Social Survey (ESS). (2020). The Human Values Scale Findings from the European Social Survey. ESS.
+- 5: *Why Eu regions are redrawing their borders*. The Pudding. (n.d.). https://pudding.cool/2019/04/eu-regions/ 
+- 6: Iversen, K. (2017, August 24). *7 data visualizations that opened the world’s eyes to gender inequality*. Medium. https://medium.com/@Katja_Iversen/7-data-visualizations-that-opened-the-worlds-eyes-to-gender-inequality-75ee03b60589
+- 7: *OECD regional well-being - how is life?*. Being. https://www.oecdregionalwellbeing.org/
+- 8: https://datatopics.worldbank.org/sdgatlas/goal-5-gender-equality?lang=en
 
 ## Milestone 2 (26th April, 5pm)
 
