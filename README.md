@@ -81,7 +81,8 @@ Most variables follow a similar encoding. As a result, we can retain variables o
     5. Trust in Governance: trstlgl, trstplc, trstprl, trstplt
     6. Political Activism: badge, bctprd, pbldmn
 
-[Link](https://drive.switch.ch/index.php/s/C1ZODnHmBgECjqc) to selected variables in the dataset
+[Link](https://drive.switch.ch/index.php/s/C1ZODnHmBgECjqc) to selected variables in the dataset.
+
 Most variables are missing data for few to no respondents, though a nonnegligible portion have up to 80% of data missing (see histogram below). We may add other variables to this set, in particular if stratification along gender and age lines could produce further interesting divisions.
 
 ![alt text](https://github.com/com-480-data-visualization/ChartToppers/raw/master/m1_images/missings.png "missings")
