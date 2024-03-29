@@ -99,6 +99,31 @@ Finally, we show average of self-reported political leanings (lower = more liber
 > - What source of inspiration do you take? Visualizations that you found on other websites or magazines (might be unrelated to your data).
 > - In case you are using a dataset that you have already explored in another context (ML or ADA course, semester project...), you are required to share the report of that work to outline the differences with the submission for this class.
 
+**Prior Uses**
+
+The ESS dataset is used by its providers and the academic community for socio-political and economic analyses, including a special issue on survey methodology [XX3, XX4]. Apart from academia, journalists also analyze data releases; The Economist article mentioned in section 2, with its spare and austere visualizations, is one such example of how ESS data is employed.
+
+**Originality**
+While journalists do report on this data, they typically do so only through the lens of publications by academics. Our chief contribution will be accessing raw data to creating interactive, engaging, and robust visualizations that are novel among attempts to present this vast dataset. Furthermore, we aspire to create a visualization architecture that could serve as a valuable resource for leading news outlets in the future, making complex socio-political and economic analyses more digestible and sought after by the broader public.
+
+**Inspiration**
+
+Our project will employ maps enhanced with special colors and shapes to underscore time variant findings. We will develop sliders that highlight ideological differences as well as trends in time. The visualization will be developed in the style of Figure 1 below, while differentials will be transformed and presented in the style of Figure 2, with country, age, and gender segmentation capability. [XX5] Another source of inspiration is the flower model applied by the OECD on quality of life indices (Figure 3). [XX6, XX7] We like how detailed information stems from an interactive map inside a simple site structure. Additionally, the idea of flower stem length depending on index size is stimulating (Figure 4). Finally, we will consider using the idea of the interactive text boxes emphasizing the difference between genders (see Figure 6). [XX7]
+
+### M1 Sources
+
+XX3: *Measurement instruments for the Social Sciences*. BioMed Central. (n.d.). https://measurementinstrumentssocialscience.biomedcentral.com/ess
+
+XX4: European Social Survey (ESS). (2020). The Human Values Scale Findings from the European Social Survey. ESS.
+
+XX5: *Why Eu regions are redrawing their borders*. The Pudding. (n.d.). https://pudding.cool/2019/04/eu-regions/ 
+
+XX6: Iversen, K. (2017, August 24). *7 data visualizations that opened the world’s eyes to gender inequality*. Medium. https://medium.com/@Katja_Iversen/7-data-visualizations-that-opened-the-worlds-eyes-to-gender-inequality-75ee03b60589
+
+XX7: *OECD regional well-being - how is life?*. Being. https://www.oecdregionalwellbeing.org/
+
+XX8: https://datatopics.worldbank.org/sdgatlas/goal-5-gender-equality?lang=en
+
 ## Milestone 2 (26th April, 5pm)
 
 **10% of the final grade**
