@@ -113,7 +113,7 @@ Our project will employ maps enhanced with special colors and shapes to undersco
 
 Figure 1:
 
-![alt text](https://github.com/com-480-data-visualization/ChartToppers/raw/master/m1_images/insp1.png "Figure 1")
+![image](https://github.com/com-480-data-visualization/ChartToppers/assets/80288512/25973e11-175e-4b3e-bd31-0577d46f223b)
 
 
 Figure 2:
