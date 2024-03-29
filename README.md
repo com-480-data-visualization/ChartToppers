@@ -104,6 +104,7 @@ Finally, we show average of self-reported political leanings (lower = more liber
 The ESS dataset is used by its providers and the academic community for socio-political and economic analyses, including a special issue on survey methodology [XX3, XX4]. Apart from academia, journalists also analyze data releases; The Economist article mentioned in section 2, with its spare and austere visualizations, is one such example of how ESS data is employed.
 
 **Originality**
+
 While journalists do report on this data, they typically do so only through the lens of publications by academics. Our chief contribution will be accessing raw data to creating interactive, engaging, and robust visualizations that are novel among attempts to present this vast dataset. Furthermore, we aspire to create a visualization architecture that could serve as a valuable resource for leading news outlets in the future, making complex socio-political and economic analyses more digestible and sought after by the broader public.
 
 **Inspiration**
@@ -113,15 +114,10 @@ Our project will employ maps enhanced with special colors and shapes to undersco
 ### M1 Sources
 
 XX3: *Measurement instruments for the Social Sciences*. BioMed Central. (n.d.). https://measurementinstrumentssocialscience.biomedcentral.com/ess
-
 XX4: European Social Survey (ESS). (2020). The Human Values Scale Findings from the European Social Survey. ESS.
-
 XX5: *Why Eu regions are redrawing their borders*. The Pudding. (n.d.). https://pudding.cool/2019/04/eu-regions/ 
-
 XX6: Iversen, K. (2017, August 24). *7 data visualizations that opened the world’s eyes to gender inequality*. Medium. https://medium.com/@Katja_Iversen/7-data-visualizations-that-opened-the-worlds-eyes-to-gender-inequality-75ee03b60589
-
 XX7: *OECD regional well-being - how is life?*. Being. https://www.oecdregionalwellbeing.org/
-
 XX8: https://datatopics.worldbank.org/sdgatlas/goal-5-gender-equality?lang=en
 
 ## Milestone 2 (26th April, 5pm)
