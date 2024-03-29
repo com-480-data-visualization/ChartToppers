@@ -109,7 +109,7 @@ While journalists do report on this data, they typically do so only through the 
 
 **Inspiration**
 
-Our project will employ maps enhanced with special colors and shapes to underscore time variant findings. We will develop sliders that highlight ideological differences as well as trends in time. The visualization will be developed in the style of Figure 1 below, while differentials will be transformed and presented in the style of Figure 2, with country, age, and gender segmentation capability. [XX5] Another source of inspiration is the flower model applied by the OECD on quality of life indices (Figure 3). [XX6, XX7] We like how detailed information stems from an interactive map inside a simple site structure. Additionally, the idea of flower stem length depending on index size is stimulating (Figure 4). Finally, we will consider using the idea of the interactive text boxes emphasizing the difference between genders (see Figure 5). [XX8]
+Our project will employ maps enhanced with special colors and shapes to underscore time variant findings. We will develop sliders that highlight ideological differences as well as trends in time. The visualization will be developed in the style of Figure 1 below, while differentials will be transformed and presented in the style of Figure 2, with country, age, and gender segmentation capability. [XX5] Another source of inspiration is the flower model applied by the OECD on quality of life indices (Figure 3). [XX6, XX7] We like how detailed information stems from an interactive map inside a simple site structure. Additionally, the idea of flower stem length depending on index size is stimulating (Figure 4). Finally, we will consider using the idea of the interactive text boxes emphasizing the difference between genders (see Figure 5). [^ 8]
 
 Figure 1:
 
@@ -144,7 +144,7 @@ Figure 5:
 - XX5: *Why Eu regions are redrawing their borders*. The Pudding. (n.d.). https://pudding.cool/2019/04/eu-regions/ 
 - XX6: Iversen, K. (2017, August 24). *7 data visualizations that opened the world’s eyes to gender inequality*. Medium. https://medium.com/@Katja_Iversen/7-data-visualizations-that-opened-the-worlds-eyes-to-gender-inequality-75ee03b60589
 - XX7: *OECD regional well-being - how is life?*. Being. https://www.oecdregionalwellbeing.org/
-- XX8: https://datatopics.worldbank.org/sdgatlas/goal-5-gender-equality?lang=en
+- [^ 8]: https://datatopics.worldbank.org/sdgatlas/goal-5-gender-equality?lang=en
 
 ## Milestone 2 (26th April, 5pm)
 
