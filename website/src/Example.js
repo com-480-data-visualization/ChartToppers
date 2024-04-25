@@ -1,5 +1,3 @@
-// Example.js
-
 import React from 'react';
 
 function Example() {
