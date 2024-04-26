@@ -3,10 +3,12 @@ import Example from "./Example"; // Assuming Example.js is correctly set up
 import MapComponent from "./MapComponent"; // Import the MapComponent
 import "./App.css"; // Ensure App.css is correctly imported
 import GraphComponent from "./GraphComponent";
+import Banner from "./Banner";
 
 function App() {
   return (
     <div className="App">
+      <Banner />
       <header className="App-header">
         <h1 class="text-5xl w-96">
           How Are European Views on Politics and Society Changing?
@@ -28,7 +30,8 @@ function App() {
           </p>
         </div>
       </header>
-      <div className="map-container">
+      
+      <div id="map" className="map-container">
         <MapComponent /> {/* This adds the map to your application */}
       </div>
       <div className="component-container">
