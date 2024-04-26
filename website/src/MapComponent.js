@@ -2,23 +2,33 @@ import React, { useEffect } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const MapComponent = () => {
+const CustomMapPanes = () => {
   useEffect(() => {
-    const map = L.map('map').setView([50.1109, 10.1503], 4); // Coordinates for the center of Europe and zoom level
+    const map = L.map('custom-map', {
+      center: [50.1109, 10.1503], // Center the map over Europe
+      zoom: 6
+    });
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap'
+    // Create a custom pane for labels
+    map.createPane('labels');
+    map.getPane('labels').style.zIndex = 650;
+    map.getPane('labels').style.pointerEvents = 'none';  // Allow click events to pass through to the base map
+
+    // Basemap without labels
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap, © CartoDB'
     }).addTo(map);
 
-    const marker = L.marker([50.1109, 10.1503]).addTo(map);
-    marker.bindPopup('<b>Hello from Europe!</b>').openPopup();
+    // Labels only layer
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap, © CartoDB',
+      pane: 'labels'
+    }).addTo(map);
 
-    // Cleanup on component unmount
-    return () => map.remove();
+    return () => map.remove();  // Clean up the map when the component unmounts
   }, []);
 
-  return <div id="map" style={{ height: '400px', width: '100%' }}></div>;
+  return <div id="custom-map" style={{ height: '400px', width: '100%' }}></div>;
 };
 
-export default MapComponent;
+export default CustomMapPanes;
