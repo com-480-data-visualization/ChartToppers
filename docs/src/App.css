@@ -28,13 +28,6 @@
   color: #61dafb;
 }
 
-.map-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
-
 
 @keyframes App-logo-spin {
   from {
