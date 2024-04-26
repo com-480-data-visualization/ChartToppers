@@ -150,6 +150,11 @@ Figure 5:
 
 **10% of the final grade**
 
+The deliverables for milestone 2 can be found here:
+
+[M2_ChartToppers.pdf](https://github.com/com-480-data-visualization/ChartToppers/files/15131897/M2_ChartToppers.pdf)
+
+[Website prototype](https://com-480-data-visualization.github.io/ChartToppers/)
 
 ## Milestone 3 (31st May, 5pm)
 
