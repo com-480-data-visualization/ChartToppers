@@ -15,6 +15,9 @@ function App() {
       <div className="map-container">
         <MapComponent /> {/* This adds the map to your application */}
       </div>
+      <div className="component-container">
+        <Example /> {/* So here we can add components, parts of the website, visualizations like this */}
+      </div>
     </div>
   );
 }
