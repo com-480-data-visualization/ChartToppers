@@ -1,34 +1,55 @@
-import React, { useEffect } from 'react';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import React, { useEffect, useRef } from 'react';
+import * as d3 from 'd3';
+import { geoMercator, geoPath } from 'd3-geo';
+import { json } from 'd3-fetch';
 
-const CustomMapPanes = () => {
-  useEffect(() => {
-    const map = L.map('custom-map', {
-      center: [50.1109, 10.1503], // Center the map over Europe
-      zoom: 6
-    });
+const MapComponent = () => {
+    const ref = useRef();
 
-    // Create a custom pane for labels
-    map.createPane('labels');
-    map.getPane('labels').style.zIndex = 650;
-    map.getPane('labels').style.pointerEvents = 'none';  // Allow click events to pass through to the base map
+    useEffect(() => {
+        const svg = d3.select(ref.current)
+            .attr('width', 800)
+            .attr('height', 600)
+            .append('g');
 
-    // Basemap without labels
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap, © CartoDB'
-    }).addTo(map);
+        const projection = geoMercator()
+            .center([20, 52]) // Approximate center of Europe
+            .scale(600)
+            .translate([400, 300]);
 
-    // Labels only layer
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap, © CartoDB',
-      pane: 'labels'
-    }).addTo(map);
+        const path = geoPath().projection(projection);
 
-    return () => map.remove();  // Clean up the map when the component unmounts
-  }, []);
+        json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson").then(data => {
+            svg.selectAll('path')
+                .data(data.features)
+                .enter().append('path')
+                .attr('fill', '#cccccc')
+                .attr('d', path)
+                .attr('stroke', 'white')
+                .attr('stroke-width', 1.5)
+                .on('mouseover', function(event, d) {
+                    d3.select(this).attr('fill', '#6e6e6e');
+                })
+                .on('mouseout', function(event, d) {
+                    d3.select(this).attr('fill', '#cccccc');
+                });
 
-  return <div id="custom-map" style={{ height: '400px', width: '100%' }}></div>;
-};
+            svg.selectAll('text')
+                .data(data.features)
+                .enter()
+                .append('text')
+                .attr('x', d => path.centroid(d)[0])
+                .attr('y', d => path.centroid(d)[1])
+                .text(d => d.properties.name)
+                .attr('text-anchor', 'middle')
+                .attr('alignment-baseline', 'middle')
+                .style('font-size', 11)
+                .style('fill', 'black');
+        });
 
-export default CustomMapPanes;
+    }, []);
+
+    return <svg ref={ref} />;
+}
+
+export default MapComponent;
