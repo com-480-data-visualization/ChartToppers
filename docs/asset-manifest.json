@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ChartToppers/static/css/main.7b28508a.css",
+    "main.js": "/ChartToppers/static/js/main.96a76a90.js",
+    "static/js/453.bb828c5d.chunk.js": "/ChartToppers/static/js/453.bb828c5d.chunk.js",
+    "index.html": "/ChartToppers/index.html",
+    "main.7b28508a.css.map": "/ChartToppers/static/css/main.7b28508a.css.map",
+    "main.96a76a90.js.map": "/ChartToppers/static/js/main.96a76a90.js.map",
+    "453.bb828c5d.chunk.js.map": "/ChartToppers/static/js/453.bb828c5d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7b28508a.css",
+    "static/js/main.96a76a90.js"
+  ]
+}
