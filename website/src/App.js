@@ -5,16 +5,17 @@ import "./App.css"; // Ensure App.css is correctly imported
 import GraphComponent from "./GraphComponent";
 import Banner from "./Banner";
 import BarChart from "./BarChart";
+import GraphTest from "./GraphTest";
 
 function App() {
   return (
     <div className="App">
       <Banner />
       <header className="App-header">
-        <h1 class="text-5xl w-96">
+        <h1 className="text-5xl w-96">
           How Are European Views on Politics and Society Changing?
         </h1>
-        <div class=" text-base w-3/4 mt-10">
+        <div className=" text-base w-3/4 mt-10">
           <p>
             Across Europe, a quiet change is brewing. Inspired by an Economist
             article on the growing divide between young men and women, this
@@ -32,10 +33,10 @@ function App() {
         </div>
       </header>
       <h1></h1>
-      <h1 class="text-3xl w-96 text-left ml-7 mt-5">
+      <h1 className="text-3xl w-96 text-left ml-7 mt-5">
         1. Bar Chart: Setting the Stage
       </h1>
-      <p class=" text-base w-3/4 mt-10 text-left ml-7">
+      <p className=" text-base w-3/4 mt-10 text-left ml-7">
         Our journey starts with a Europe-wide snapshot. This bar chart shows
         average levels of a chosen variable (like trust in institutions) for
         four different age groups over time. This helps you get a feel for
@@ -59,7 +60,9 @@ function App() {
       <div id="map" class="flex justify-center items-center mt-4">
         <MapComponent /> {/* This adds the map to your application */}
       </div>
-      <h1 class="text-3xl w-96 text-left ml-7 mt-5">3. Ranking the Gender Divide</h1>
+      <h1 class="text-3xl w-96 text-left ml-7 mt-5">
+        3. Ranking the Gender Divide
+      </h1>
       <p class=" text-base w-3/4 mt-10 text-left ml-7">
         This final view lets you compare countries side-by-side. It shows a
         ranked list of European nations based on the chosen variable's gender
@@ -70,6 +73,10 @@ function App() {
       </p>
       <div className="component-container">
         <GraphComponent />{" "}
+        {/* So here we can add components, parts of the website, visualizations like this */}
+      </div>
+      <div className="component-container">
+        <GraphTest />{" "}
         {/* So here we can add components, parts of the website, visualizations like this */}
       </div>
     </div>

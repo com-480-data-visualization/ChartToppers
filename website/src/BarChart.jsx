@@ -1,109 +1,147 @@
-import React, { useEffect } from 'react';
-import * as d3 from 'd3';
+import { useEffect, useRef, useState } from "react";
+import * as d3 from "d3";
+import dataUrl from "./data/fake_survey_data_test.csv?url";
 
 const BarChart = () => {
-  useEffect(() => {
-    d3.select('#chart').selectAll('*').remove();
-    const data = [
-        { year: 2002, generation1: 4, generation2: 2, generation3: 5, generation4: 1 },
-        { year: 2004, generation1: 3, generation2: 6, generation3: 1, generation4: 4 },
-        { year: 2006, generation1: 5, generation2: 1, generation3: 3, generation4: 2 },
-        { year: 2008, generation1: 2, generation2: 4, generation3: 6, generation4: 5 },
-        { year: 2010, generation1: 1, generation2: 3, generation3: 2, generation4: 6 },
-        { year: 2012, generation1: 6, generation2: 5, generation3: 4, generation4: 3 },
-        { year: 2014, generation1: 4, generation2: 1, generation3: 2, generation4: 5 },
-        { year: 2016, generation1: 3, generation2: 2, generation3: 6, generation4: 1 },
-        { year: 2018, generation1: 5, generation2: 2, generation3: 4, generation4: 3 },
-        { year: 2020, generation1: 2, generation2: 6, generation3: 1, generation4: 5 },
-      ];
+  const [variable, setVariable] = useState("media_consumption");
+  const [data, setData] = useState(null);
+  const [values, setValues] = useState([]); // State to hold processed data
+  const chartRef = useRef(null);
 
-    // Set up SVG
-    const margin = { top: 20, right: 20, bottom: 60, left: 60 };
+  const colors = {
+    media_consumption: "#F8AD1A",
+    religious_activity: "#F6810C",
+    financial_vulnerability: "#E34D20",
+    mental_stress: "#AA2243",
+    loneliness: "#6C0D59",
+    education: "#3F0059",
+  };
+
+  useEffect(() => {
+    d3.csv(dataUrl)
+      .then((csv_data) => setData(csv_data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    if (data !== null) {
+      const years = [...new Set(data.map((item) => item.year))];
+      const newValues = years.map((year) => ({
+        year: year,
+        generations: [1, 2, 3, 4].map((gen) => {
+          const row = data.find(
+            (d) => d.year === year && d.generation === gen.toString()
+          );
+          return row ? Number(row[variable]) : null;
+        }),
+      }));
+      setValues(newValues);
+    }
+  }, [data, variable]);
+
+  useEffect(() => {
+    if (!values.length) return; // Do nothing if values are not set
+  
+    const svg = d3.select(chartRef.current);
+    const margin = { top: 20, right: 20, bottom: 30, left: 40 };
     const width = 960 - margin.left - margin.right;
     const height = 500 - margin.top - margin.bottom;
-    const svg = d3.select('#chart')
-      .append('svg')
-      .attr('width', width + margin.left + margin.right)
-      .attr('height', height + margin.top + margin.bottom)
-      .append('g')
-      .attr('transform', `translate(${margin.left},${margin.top})`);
-
-    // Set up the scales
+  
     const x0 = d3.scaleBand()
       .rangeRound([0, width])
       .paddingInner(0.1)
-      .domain(data.map(d => d.year));
-
+      .domain(values.map(d => d.year));
+  
     const x1 = d3.scaleBand()
       .padding(0.05)
-      .domain(['generation1', 'generation2', 'generation3', 'generation4'])
+      .domain(["generation1", "generation2", "generation3", "generation4"])
       .rangeRound([0, x0.bandwidth()]);
-
+  
     const y = d3.scaleLinear()
       .rangeRound([height, 0])
-      .domain([0, 6]);
-
-    const z = d3.scaleOrdinal()
-      .range(['#7b6888', '#6b486b', '#a05d56', '#d0743c']);
-
-    // Draw the bars
-    svg.append('g')
-      .selectAll('g')
-      .data(data)
-      .enter().append('g')
-        .attr('transform', d => `translate(${x0(d.year)},0)`)
-      .selectAll('rect')
-      .data(d => ['generation1', 'generation2', 'generation3', 'generation4'].map(key => ({ key, value: d[key] })))
-      .enter().append('rect')
-        .attr('x', d => x1(d.key))
-        .attr('y', d => y(d.value))
-        .attr('width', x1.bandwidth())
-        .attr('height', d => height - y(d.value))
-        .attr('fill', d => z(d.key));
-
-    // Add axes
-    svg.append('g')
-      .attr('class', 'axis')
-      .attr('transform', `translate(0,${height})`)
-      .call(d3.axisBottom(x0));
-
-    svg.append('g')
-      .attr('class', 'axis')
-      .call(d3.axisLeft(y).ticks(null, 's'))
-      .append('text')
-      .attr('x', 2)
-      .attr('y', y(y.ticks().pop()) + 0.5)
-      .attr('dy', '0.32em')
-      .attr('fill', '#000')
-      .attr('font-weight', 'bold')
-      .attr('text-anchor', 'start')
-      .text('Scores');
-
-    // Add legend
-    const legend = svg.append('g')
-      .attr('font-family', 'sans-serif')
-      .attr('font-size', 10)
-      .attr('text-anchor', 'end')
-      .selectAll('g')
-      .data(['generation1', 'generation2', 'generation3', 'generation4'].slice().reverse())
-      .enter().append('g')
-      .attr('transform', (d, i) => `translate(0,${i * 20})`);
-
-    legend.append('rect')
-      .attr('x', width - 19)
-      .attr('width', 19)
-      .attr('height', 19)
-      .attr('fill', z);
-
-    legend.append('text')
-      .attr('x', width - 24)
-      .attr('y', 9.5)
-      .attr('dy', '0.32em')
-      .text(d => d);
-
-  }, []);
-
-  return <div id="chart" />;
+      .domain([0, d3.max(values, d => d3.max(d.generations))]);
+  
+    const z = d3
+      .scaleOrdinal()
+      .range(["#7b6888", "#6b486b", "#a05d56", "#d0743c"]);
+  
+    const xAxis = d3.axisBottom(x0);
+    const yAxis = d3.axisLeft(y);
+  
+    // Set up the axes if they're not already present
+    svg.selectAll(".axis").data([0]).enter().append("g").attr("class", "x axis");
+    svg.selectAll(".y.axis").data([0]).enter().append("g").attr("class", "y axis");
+  
+    // Transition the Axis
+    svg.select(".x.axis")
+      .attr("transform", `translate(${margin.left},${height})`)
+      .transition()
+      .duration(1000)
+      .call(xAxis);
+  
+    svg.select(".y.axis")
+      .attr("transform", `translate(${margin.left})`)
+      .transition()
+      .duration(1000)
+      .call(yAxis);
+  
+    // Bind data to groups for each year
+    const yearGroups = svg.selectAll("g.year-group")
+      .data(values, d => d.year);
+  
+    // Enter new groups
+    const yearGroupsEnter = yearGroups.enter().append("g")
+      .attr("class", "year-group")
+      .attr("transform", d => `translate(${x0(d.year) + margin.left},0)`);
+  
+    // Update existing groups
+    yearGroups.transition()
+      .duration(4000)
+      .attr("transform", d => `translate(${x0(d.year) + margin.left},0)`);
+  
+    yearGroups.exit().remove();
+  
+    // Bind data to rectangles within each group
+    const bars = yearGroups.merge(yearGroupsEnter).selectAll("rect")
+      .data(d => d.generations.map((value, index) => ({ index, value })));
+  
+    // Enter new bars
+    bars.enter().append("rect")
+      .attr("x", d => x1(`generation${d.index + 1}`))
+      .attr("width", x1.bandwidth())
+      .attr("y", height)
+      .attr("height", 0)
+      .attr("fill", (d) => z(d.index))
+      .merge(bars) // Update existing bars
+      .transition()
+      .duration(1000)
+      .attr("y", d => y(d.value))
+      .attr("height", d => height - y(d.value));
+  
+    bars.exit().transition().duration(1000)
+      .attr("y", height)
+      .attr("height", 0)
+      .remove();
+  
+  }, [values, variable]);
+  
+  return (
+    <div className="flex-col justify-center">
+      <div className="flex gap-x-3 mb-4">
+        {Object.keys(colors).map((variable) => (
+          <button
+            key={variable}
+            style={{ backgroundColor: `${colors[variable]}`, color: "white" }}
+            className="text-white font-bold py-2 px-4 rounded"
+            onClick={() => setVariable(variable)}
+          >
+            {variable.replace("_", " ")}
+          </button>
+        ))}
+      </div>
+      <svg ref={chartRef} width="960" height="550"></svg>
+    </div>
+  );
 };
 
 export default BarChart;
