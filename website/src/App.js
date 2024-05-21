@@ -1,7 +1,6 @@
 import React from "react";
 import Example from "./Example"; // Assuming Example.js is correctly set up
 import "./App.css"; // Ensure App.css is correctly imported
-import GraphComponent from "./GraphComponent";
 import Banner from "./Banner";
 import BarChart from "./BarChart";
 import GraphTest from "./GraphTest";
@@ -34,17 +33,17 @@ function App() {
       </header>
 
       <section>
-        <h2 className="text-3xl w-96 text-left ml-7 mt-5">
+        <h2 className="text-3xl w-96 ml-7 mt-5 flex justify-center">
           1. Bar Chart: Setting the Stage
         </h2>
-        <p className="text-base w-3/4 mt-10 text-left ml-7">
+        <p className="text-base w-3/4 mt-10 text-left ml-7 flex justify-center">
           Our journey starts with a Europe-wide snapshot. This bar chart shows
           average levels of a chosen variable (like trust in institutions) for
           four different age groups over time. This helps you get a feel for
           overall trends before we explore how these trends differ for men and
           women.
         </p>
-        <div className="component-container">
+        <div className="component-container flex justify-center">
           <BarChart />
         </div>
       </section>
@@ -77,9 +76,6 @@ function App() {
           countries have the biggest differences in, for example, media
           consumption habits between men and women.
         </p>
-        <div className="component-container">
-          <GraphComponent />
-        </div>
         <div className="component-container">
           <GraphTest />
         </div>
