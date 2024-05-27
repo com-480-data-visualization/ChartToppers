@@ -4,9 +4,8 @@ import dataUrl from "./data/figure_3_ordinal.csv?url";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
-const GraphTest = () => {
+const GraphTest = ({ variable }) => {
   const d3Container = useRef(null);
-  const [variable, setVariable] = useState("wellbeing");
   const [data, setData] = useState([]);
   const [means, setMeans] = useState({ meanMen: 0, meanWomen: 0 });
   const [selectedYear, setSelectedYear] = useState("2002");
@@ -19,12 +18,12 @@ const GraphTest = () => {
         .filter(
           (d) =>
             d.year === selectedYear &&
-            d.country !== "AGGREGATE" &&
+            d.country_full !== "" &&
             d[`${variable}_men`] &&
             d[`${variable}_woman`]
         )
         .map((d) => ({
-          country: d.country,
+          country: d.country_full,
           blueValue: +d[`${variable}_men`],
           yellowValue: +d[`${variable}_woman`],
           difference: +d[`${variable}_men`] - +d[`${variable}_woman`],
@@ -285,27 +284,6 @@ const GraphTest = () => {
 
   return (
     <div className="flex-col justify-center">
-      <div className="flex gap-x-3 mb-4 justify-center">
-        {[
-          "wellbeing",
-          "internet",
-          "relig",
-          "social",
-          "finstab",
-          "conservatism",
-          "anti_imm",
-          "trust",
-        ].map((v) => (
-          <button
-            key={v}
-            onClick={() => setVariable(v)}
-            className="text-white font-bold py-2 px-4 rounded"
-            style={{ backgroundColor: "#555" }}
-          >
-            {v.replace("_", " ")}
-          </button>
-        ))}
-      </div>
       <svg ref={d3Container} />
 
       <div

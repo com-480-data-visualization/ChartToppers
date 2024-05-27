@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useRef, useState } from "react";
 import Example from "./Example"; // Assuming Example.js is correctly set up
 import "./App.css"; // Ensure App.css is correctly imported
 import Banner from "./Banner";
@@ -7,9 +7,12 @@ import GraphTest from "./GraphTest";
 import MapComponent from "./MapComponent"; // Import the updated MapComponent
 
 function App() {
+
+  const [variable, setVariable] = useState("wellbeing");
+
   return (
     <div className="App">
-      <Banner />
+      <Banner setVariable={setVariable} />
       <header className="App-header">
         <h1 className="text-5xl w-96">
           How Are European Views on Politics and Society Changing?
@@ -44,7 +47,7 @@ function App() {
           women.
         </p>
         <div className="component-container flex justify-center">
-          <BarChart />
+          <BarChart variable={variable} />
         </div>
       </section>
 
@@ -60,7 +63,7 @@ function App() {
           time. Hover over a country to see a detailed breakdown by year.
         </p>
         <div id="map" className="flex justify-center items-center mt-4">
-          <MapComponent />
+          <MapComponent variable={variable}/>
         </div>
       </section>
 
@@ -77,7 +80,7 @@ function App() {
           consumption habits between men and women.
         </p>
         <div className="component-container">
-          <GraphTest />
+          <GraphTest variable={variable} />
         </div>
       </section>
     </div>

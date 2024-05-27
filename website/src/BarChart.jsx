@@ -2,20 +2,23 @@ import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import dataUrl from "./data/figure_1_bar.csv?url";
 
-const BarChart = () => {
-  const [variable, setVariable] = useState("wellbeing");
+const BarChart = ({ variable }) => {
   const [data, setData] = useState(null);
   const [values, setValues] = useState([]); // State to hold processed data
   const chartRef = useRef(null);
 
-  const colors = {
-    stress: "#F8AD1A",
-    media: "#F6810C",
-    internet: "#E34D20",
-    relig: "#AA2243",
-    social: "#6C0D59",
-    finvul: "#3F0059",
+  const buttonTexts = {
+    wellbeing: "Wellbeing related text.",
+    internet: "Internet related text.",
+    relig: "Religion related text.",
+    social: "Social related text.",
+    finstab: "Financial stability related text.",
+    conservatism: "Conservatism related text.",
+    anti_imm: "Anti-immigration related text.",
+    trust: "Trust related text.",
   };
+
+  const [text, setText] = useState(buttonTexts["wellbeing"]); // State to hold the text
 
   useEffect(() => {
     d3.csv(dataUrl)
@@ -38,6 +41,10 @@ const BarChart = () => {
       setValues(newValues);
     }
   }, [data, variable]);
+
+  useEffect(() => {
+    setText(buttonTexts[variable]);
+  }, [variable]);
 
   useEffect(() => {
     if (!values.length) return; // Do nothing if values are not set
@@ -234,29 +241,11 @@ const BarChart = () => {
   }, [values, variable]);
 
   return (
-    <div className="flex-col justify-center">
-      <div className="flex gap-x-3 mb-4">
-        {[
-          "wellbeing",
-          "internet",
-          "relig",
-          "social",
-          "finstab",
-          "conservatism",
-          "anti_imm",
-          "trust",
-        ].map((v) => (
-          <button
-            key={v}
-            onClick={() => setVariable(v)}
-            className="text-white font-bold py-2 px-4 rounded"
-            style={{ backgroundColor: "#555" }}
-          >
-            {v.replace("_", " ")}
-          </button>
-        ))}
+    <div className="flex w-full ml-10">
+      <div className="flex flex-col">
+        <p className="mb-4">{text}</p>
+        <svg ref={chartRef} width="960" height="550"></svg>
       </div>
-      <svg ref={chartRef} width="960" height="550"></svg>
     </div>
   );
 };

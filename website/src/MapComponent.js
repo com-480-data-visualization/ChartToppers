@@ -70,10 +70,9 @@ const countryNameMapping = {
     "United Kingdom" : "England"
 };
 
-const MapComponent = () => {
+const MapComponent = ({variable}) => {
     const ref = useRef();
     const [selectedYear, setSelectedYear] = useState(2002);
-    const [variable, setVariable] = useState('wellbeing_color');
     const [selectedAgeGroup, setSelectedAgeGroup] = useState('AGGREGATE');
     const [data, setData] = useState(null);
     const [filteredData, setFilteredData] = useState({});
@@ -123,7 +122,6 @@ const MapComponent = () => {
                     };
                 }
             });
-            console.log("Data Map: ", dataMap);
             setFilteredData(dataMap);
         }
     }, [selectedYear, selectedAgeGroup, variable, data]);
@@ -173,8 +171,8 @@ const MapComponent = () => {
                     const countryData = filteredData[countryName];
                     if (countryData) {
                         tooltip.html(`<strong>${countryName}</strong><br>
-                            ${variable.replace('_color', ' Men')}: ${countryData[variable.replace('color', 'men')]}<br>
-                            ${variable.replace('_color', ' Women')}: ${countryData[variable.replace('color', 'woman')]}`)
+                            ${variable} Men: ${countryData[`${variable}_men`]}<br>
+                            ${variable} Women: ${countryData[`${variable}_woman`]}`)
                             .style('visibility', 'visible');
                     }
                 })
@@ -251,7 +249,7 @@ const MapComponent = () => {
                     const countryName = d.properties.name;
                     const countryData = filteredData[countryName];
                     if (countryData) {
-                        const colorValue = countryData[variable];
+                        const colorValue = countryData[`${variable}_color`];
                         if (colorValue >= 1 && colorValue <= 7) {
                             return menColorScale(8 - colorValue); // Invert scale for men: 7 becomes 1 (dark purple)
                         } else if (colorValue >= 8 && colorValue <= 14) {
@@ -269,18 +267,6 @@ const MapComponent = () => {
 
     return (
         <div>
-            <div className="flex gap-x-3 mb-4">
-                {categories.map((category) => (
-                    <button
-                        key={category}
-                        style={{ backgroundColor: `${colors[category]}`, color: "white" }}
-                        className="text-white font-bold py-2 px-4 rounded"
-                        onClick={() => setVariable(category)}
-                    >
-                        {category.replace("_color", "").replace("_", " ")}
-                    </button>
-                ))}
-            </div>
             <div className="flex gap-x-3 mb-4">
                 <select
                     onChange={(e) => setSelectedAgeGroup(e.target.value)}
