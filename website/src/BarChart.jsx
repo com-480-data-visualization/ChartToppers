@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
-import dataUrl from "./data/figure_1.csv?url";
+import dataUrl from "./data/figure_1_bar.csv?url";
 
 const BarChart = () => {
-  const [variable, setVariable] = useState("stress");
+  const [variable, setVariable] = useState("wellbeing");
   const [data, setData] = useState(null);
   const [values, setValues] = useState([]); // State to hold processed data
   const chartRef = useRef(null);
@@ -56,13 +56,7 @@ const BarChart = () => {
     const x1 = d3
       .scaleBand()
       .padding(0.05)
-      .domain([
-        "generation1",
-        "generation2",
-        "generation3",
-        "generation4",
-        "generation5",
-      ])
+      .domain(["generation1", "generation2", "generation3", "generation4"])
       .rangeRound([0, x0.bandwidth()]);
 
     const y = d3.scaleLinear().rangeRound([height, 0]).domain([1, 6]);
@@ -102,6 +96,20 @@ const BarChart = () => {
       .transition()
       .duration(1000)
       .call(yAxis);
+
+    // Add event listeners to x-axis labels for hover effects
+    svg
+      .selectAll(".x.axis .tick")
+      .on("mouseover", function (event, year) {
+        // Highlight bars of the hovered year
+        svg
+          .selectAll("rect")
+          .attr("opacity", (d) => (d.year === year ? 1 : 0.3));
+      })
+      .on("mouseout", function () {
+        // Reset all bars to initial opacity
+        svg.selectAll("rect").attr("opacity", 1);
+      });
 
     // Define the tooltip
     const tooltip = d3
@@ -197,19 +205,54 @@ const BarChart = () => {
       .attr("y", height)
       .attr("height", 0)
       .remove();
+
+    // Legend setup
+    const legend = svg
+      .append("g")
+      .attr("font-family", "sans-serif")
+      .attr("font-size", 10)
+      .attr("text-anchor", "end")
+      .selectAll("g")
+      .data(["generation1", "generation2", "generation3", "generation4"])
+      .enter()
+      .append("g")
+      .attr("transform", (d, i) => `translate(-50,${i * 20})`);
+
+    legend
+      .append("rect")
+      .attr("x", width - 19)
+      .attr("width", 19)
+      .attr("height", 19)
+      .attr("fill", z);
+
+    legend
+      .append("text")
+      .attr("x", width - 24)
+      .attr("y", 9.5)
+      .attr("dy", "0.32em")
+      .text((d) => generation_to_age[d]);
   }, [values, variable]);
 
   return (
     <div className="flex-col justify-center">
       <div className="flex gap-x-3 mb-4">
-        {Object.keys(colors).map((variable) => (
+        {[
+          "wellbeing",
+          "internet",
+          "relig",
+          "social",
+          "finstab",
+          "conservatism",
+          "anti_imm",
+          "trust",
+        ].map((v) => (
           <button
-            key={variable}
-            style={{ backgroundColor: `${colors[variable]}`, color: "white" }}
+            key={v}
+            onClick={() => setVariable(v)}
             className="text-white font-bold py-2 px-4 rounded"
-            onClick={() => setVariable(variable)}
+            style={{ backgroundColor: "#555" }}
           >
-            {variable.replace("_", " ")}
+            {v.replace("_", " ")}
           </button>
         ))}
       </div>

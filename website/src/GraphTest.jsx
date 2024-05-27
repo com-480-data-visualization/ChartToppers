@@ -1,27 +1,37 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
-import dataUrl from "./data/figure_3.csv?url";
+import dataUrl from "./data/figure_3_ordinal.csv?url";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 
 const GraphTest = () => {
   const d3Container = useRef(null);
-  const [variable, setVariable] = useState("stress");
+  const [variable, setVariable] = useState("wellbeing");
   const [data, setData] = useState([]);
   const [means, setMeans] = useState({ meanMen: 0, meanWomen: 0 });
-  const [selectedYear, setSelectedYear] = useState("2020");
+  const [selectedYear, setSelectedYear] = useState("2002");
 
   // Fetch and parse the CSV data
   useEffect(() => {
     d3.csv(dataUrl).then((data) => {
-      // Process data here, filter by year 2002
+      // Process data here, filter by selected year
       const processedData = data
-        .filter((d) => d.year === selectedYear && d.country !== "AGGREGATE")
+        .filter(
+          (d) =>
+            d.year === selectedYear &&
+            d.country !== "AGGREGATE" &&
+            d[`${variable}_men`] &&
+            d[`${variable}_woman`]
+        )
         .map((d) => ({
           country: d.country,
           blueValue: +d[`${variable}_men`],
           yellowValue: +d[`${variable}_woman`],
-          difference: Math.abs(+d[`${variable}_woman`] - +d[`${variable}_men`]), // Calculate difference
+          difference: +d[`${variable}_men`] - +d[`${variable}_woman`],
         }))
-        .sort((a, b) => b.difference - a.difference); // Sort by difference
+        .sort((a, b) => b.difference - a.difference);
+
+      const noData = processedData.length === 0;
 
       setData(processedData);
 
@@ -35,15 +45,37 @@ const GraphTest = () => {
           meanWomen: +aggregateData[`${variable}_woman`],
         });
       }
+
+      // Check for no data condition and handle
+      if (noData) {
+        d3.select(d3Container.current).selectAll("circle").attr("fill", "grey");
+
+        d3.select(d3Container.current)
+          .selectAll("line")
+          .attr("stroke", "grey")
+          .attr("opacity", 0.3);
+
+        d3.select(d3Container.current)
+          .selectAll(".mean-line-text")
+          .attr("fill", "grey")
+          .attr("opacity", 0.3);
+
+        d3.select(d3Container.current)
+          .selectAll("circle")
+          .attr("fill", "grey")
+          .attr("opacity", 0.5)
+          .on("mouseover", null) // Disable the tooltip
+          .on("mouseout", null); // Disable the tooltip
+      }
     });
   }, [variable, selectedYear]);
 
   // Create the graph and update it when the data changes
   useEffect(() => {
     if (data.length > 0 && d3Container.current) {
-      const margin = { top: 20, right: 30, bottom: 40, left: 100 };
+      const margin = { top: 40, right: 30, bottom: 40, left: 100 };
       const width = 960 - margin.left - margin.right;
-      const height = 600 - margin.top - margin.bottom;
+      const height = 650 - margin.top - margin.bottom;
 
       // Remove old svg elements
       d3.select(d3Container.current).selectAll("*").remove();
@@ -109,8 +141,10 @@ const GraphTest = () => {
               .x((d) => xScale(d.value))
               .y((d) => yScale(d.country))
           )
+          .attr("class", `line-${d.country}`)
           .attr("stroke", "black")
           .attr("fill", "none")
+          .attr("stroke-width", 1)
           .style("opacity", 0)
           .transition()
           .duration(transitionDuration)
@@ -127,6 +161,15 @@ const GraphTest = () => {
         .attr("stroke-width", 3); // Thicker line without dashes
 
       svg
+        .append("text")
+        .attr("class", "mean-line-text")
+        .attr("x", xScale(means.meanMen))
+        .attr("y", -28) // Position above the line
+        .attr("text-anchor", "middle")
+        .attr("fill", "purple")
+        .text(`Men: ${means.meanMen.toFixed(2)}`);
+
+      svg
         .append("line")
         .attr("x1", xScale(means.meanWomen))
         .attr("x2", xScale(means.meanWomen))
@@ -135,7 +178,53 @@ const GraphTest = () => {
         .attr("stroke", "orange")
         .attr("stroke-width", 3); // Thicker line without dashes
 
-      // Blue dots selection
+      svg
+        .append("text")
+        .attr("class", "mean-line-text")
+        .attr("x", xScale(means.meanWomen))
+        .attr("y", -8) // Position above the line
+        .attr("text-anchor", "middle")
+        .attr("fill", "orange")
+        .text(`Women: ${means.meanWomen.toFixed(2)}`);
+
+      // Add the tooltip div
+      const tooltip = d3
+        .select("body")
+        .append("div")
+        .attr("class", "tooltip")
+        .style("position", "absolute")
+        .style("background", "#f9f9f9")
+        .style("padding", "5px")
+        .style("border", "1px solid #d3d3d3")
+        .style("border-radius", "5px")
+        .style("opacity", 0);
+
+      const showTooltip = (event, d) => {
+        tooltip.transition().duration(200).style("opacity", 0.9);
+        tooltip
+          .html(
+            `Country: ${d.country}<br/>Men: ${d.blueValue}<br/>Women: ${d.yellowValue}`
+          )
+          .style("left", event.pageX + 5 + "px")
+          .style("top", event.pageY - 28 + "px");
+
+        // Highlight the dots and line
+        d3.selectAll(`.dot-${d.country}`)
+          .attr("stroke", "black")
+          .attr("stroke-width", 2);
+
+        d3.select(`.line-${d.country}`).attr("stroke-width", 3);
+      };
+
+      const hideTooltip = (event, d) => {
+        tooltip.transition().duration(500).style("opacity", 0);
+
+        // Remove highlight from dots and line
+        d3.selectAll(`.dot-${d.country}`).attr("stroke", "none");
+
+        d3.select(`.line-${d.country}`).attr("stroke-width", 1);
+      };
+
       const blueDots = svg.selectAll(".dot.blue").data(data, (d) => d.country);
 
       // Exit
@@ -151,12 +240,14 @@ const GraphTest = () => {
       blueDots
         .enter()
         .append("circle")
-        .attr("class", "dot blue")
+        .attr("class", (d) => `dot blue dot-${d.country}`)
         .attr("cx", (d) => xScale(d.blueValue))
         .attr("cy", (d) => yScale(d.country))
         .attr("r", 10)
         .attr("fill", "#613C8E")
         .style("opacity", 0)
+        .on("mouseover", showTooltip)
+        .on("mouseout", hideTooltip)
         .transition()
         .duration(transitionDuration)
         .style("opacity", 1);
@@ -178,12 +269,14 @@ const GraphTest = () => {
       yellowDots
         .enter()
         .append("circle")
-        .attr("class", "dot yellow")
+        .attr("class", (d) => `dot yellow dot-${d.country}`)
         .attr("cx", (d) => xScale(d.yellowValue))
         .attr("cy", (d) => yScale(d.country))
         .attr("r", 10)
         .attr("fill", "#f39a59")
         .style("opacity", 0)
+        .on("mouseover", showTooltip)
+        .on("mouseout", hideTooltip)
         .transition()
         .duration(transitionDuration)
         .style("opacity", 1);
@@ -192,16 +285,15 @@ const GraphTest = () => {
 
   return (
     <div className="flex-col justify-center">
-      <svg ref={d3Container} />
-      <div className="flex gap-x-3 mb-4">
+      <div className="flex gap-x-3 mb-4 justify-center">
         {[
-          "stress",
-          "media",
+          "wellbeing",
           "internet",
           "relig",
           "social",
-          "finvul",
-          "ideological",
+          "finstab",
+          "conservatism",
+          "anti_imm",
           "trust",
         ].map((v) => (
           <button
@@ -213,6 +305,32 @@ const GraphTest = () => {
             {v.replace("_", " ")}
           </button>
         ))}
+      </div>
+      <svg ref={d3Container} />
+
+      <div
+        className="slider-container"
+        style={{ width: `${960 - 100 - 30}px`, margin: "0 auto" }}
+      >
+        <Slider
+          min={2002}
+          max={2020}
+          step={2}
+          marks={{
+            2002: "2002",
+            2004: "2004",
+            2006: "2006",
+            2008: "2008",
+            2010: "2010",
+            2012: "2012",
+            2014: "2014",
+            2016: "2016",
+            2018: "2018",
+            2020: "2020",
+          }}
+          defaultValue={2002}
+          onChange={(value) => setSelectedYear(value.toString())}
+        />
       </div>
     </div>
   );
