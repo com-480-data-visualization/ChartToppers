@@ -1,15 +1,19 @@
 {
   "files": {
-    "main.css": "/ChartToppers/static/css/main.7b28508a.css",
-    "main.js": "/ChartToppers/static/js/main.96a76a90.js",
+    "main.css": "/ChartToppers/static/css/main.6381df3a.css",
+    "main.js": "/ChartToppers/static/js/main.1643a790.js",
     "static/js/453.bb828c5d.chunk.js": "/ChartToppers/static/js/453.bb828c5d.chunk.js",
+    "static/media/europe.geojson?url": "/ChartToppers/static/media/europe.77adba54836af4457a31.geojson",
+    "static/media/figure_2_choropleth.csv?url": "/ChartToppers/static/media/figure_2_choropleth.f37d836c5dce48bfd6e0.csv",
+    "static/media/figure_3_ordinal.csv?url": "/ChartToppers/static/media/figure_3_ordinal.ac0570a6148fdb151e55.csv",
+    "static/media/figure_1_bar.csv?url": "/ChartToppers/static/media/figure_1_bar.a7da035b244f7371f056.csv",
     "index.html": "/ChartToppers/index.html",
-    "main.7b28508a.css.map": "/ChartToppers/static/css/main.7b28508a.css.map",
-    "main.96a76a90.js.map": "/ChartToppers/static/js/main.96a76a90.js.map",
+    "main.6381df3a.css.map": "/ChartToppers/static/css/main.6381df3a.css.map",
+    "main.1643a790.js.map": "/ChartToppers/static/js/main.1643a790.js.map",
     "453.bb828c5d.chunk.js.map": "/ChartToppers/static/js/453.bb828c5d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7b28508a.css",
-    "static/js/main.96a76a90.js"
+    "static/css/main.6381df3a.css",
+    "static/js/main.1643a790.js"
   ]
 }
