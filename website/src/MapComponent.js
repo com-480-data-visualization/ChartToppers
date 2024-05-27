@@ -2,10 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import { geoMercator, geoPath } from 'd3-geo';
 import { csv } from 'd3-fetch';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 import dataUrl from './data/figure_2_choropleth.csv?url';
 
 const years = [2002, 2004, 2006, 2008, 2010, 2012, 2014, 2016, 2018, 2020];
-const categories = ['wellbeing_color', 'media_color', 'internet_color', 'relig_color', 'social_color', 'finstab_color'];
+const categories = ['wellbeing_color', 'media_color', 'internet_color', 'relig_color', 'social_color', 'finstab_color', 'conservatism_color', 'trust_color'];
 const colors = {
     wellbeing_color: "#F8AD1A",
     media_color: "#F6810C",
@@ -13,6 +15,8 @@ const colors = {
     relig_color: "#AA2243",
     social_color: "#6C0D59",
     finstab_color: "#3F0059",
+    conservatism_color: "#1E90FF",
+    trust_color: "#32CD32",
 };
 const ageGroups = ["<25", "25-39", "40-59", "60+", "AGGREGATE"];
 
@@ -56,12 +60,14 @@ const countryNameMapping = {
     "Turkey": "Turkey",
     "Ukraine": "Ukraine",
     "United Kingdom": "United Kingdom",
-    "Bosnia and Herzegovina": "Bosnia and Herz.",
+    "Bosnia and Herzegovina": "Bosnia and Herzegovina",
     "Moldova": "Moldova",
     "Tunisia": "Tunisia",
     "Georgia": "Georgia",
     "Armenia": "Armenia",
-    "Lebanon": "Lebanon"
+    "Lebanon": "Lebanon",
+    "Republic of Serbia": "Serbia",
+    "United Kingdom" : "England"
 };
 
 const MapComponent = () => {
@@ -108,6 +114,12 @@ const MapComponent = () => {
                         finstab_color: +d.finstab_color,
                         finstab_men: +d.finstab_men,
                         finstab_woman: +d.finstab_woman,
+                        conservatism_color: +d.conservatism_color,
+                        conservatism_men: +d.conservatism_men,
+                        conservatism_woman: +d.conservatism_woman,
+                        trust_color: +d.trust_color,
+                        trust_men: +d.trust_men,
+                        trust_woman: +d.trust_woman,
                     };
                 }
             });
@@ -118,8 +130,8 @@ const MapComponent = () => {
 
     useEffect(() => {
         const svg = d3.select(ref.current)
-            .attr('width', 1000)
-            .attr('height', 700);
+            .attr('width', 1200)
+            .attr('height', 800);
 
         const g = svg.append('g');
 
@@ -130,8 +142,13 @@ const MapComponent = () => {
 
         const path = geoPath().projection(projection);
 
-        const womenColorScale = d3.scaleSequential(d3.interpolateOranges).domain([1, 7]);
-        const menColorScale = d3.scaleSequential(d3.interpolatePurples).domain([8, 14]);
+        const womenColorScale = d3.scaleSequential()
+            .domain([1, 7])
+            .interpolator(d3.interpolateRgbBasis(['#fff5eb', '#fee6ce', '#fdd0a2', '#fdae6b', '#fd8d3c', '#f16913', '#d94801']));
+
+        const menColorScale = d3.scaleSequential()
+            .domain([1, 7])
+            .interpolator(d3.interpolateRgbBasis(['#dadaeb', '#bcbddc', '#9e9ac8', '#807dba', '#6a51a3', '#54278f', '#3f007d']));
 
         const tooltip = d3.select('body').append('div')
             .attr('class', 'tooltip')
@@ -182,8 +199,11 @@ const MapComponent = () => {
                 .style('font-size', 11)
                 .style('fill', 'black');
 
+            // Clear previous legend if it exists
+            svg.select('.legend-frame').remove();
+
             const legendFrame = svg.append('g')
-                .attr('transform', 'translate(730, 600)')
+                .attr('transform', 'translate(900, 700)')
                 .attr('class', 'legend-frame');
 
             legendFrame.append('rect')
@@ -197,8 +217,8 @@ const MapComponent = () => {
                 .attr('transform', 'translate(10, 10)');
 
             const legendData = [
-                { label: 'Women', colors: ['#fff5eb', '#fee6ce', '#fdd0a2', '#fdae6b', '#fd8d3c', '#e6550d', '#a63603'] },
-                { label: 'Men', colors: ['#fcfbfd', '#efedf5', '#dadaeb', '#bcbddc', '#9e9ac8', '#756bb1', '#54278f'] }
+                { label: 'Women', colors: ['#fdd0a2', '#fdae6b', '#fd8d3c', '#f16913', '#d94801', '#a63603', '#7f2704'] },
+                { label: 'Men', colors: ['#dadaeb', '#bcbddc', '#9e9ac8', '#807dba', '#6a51a3', '#54278f', '#3f007d'] }
             ];
 
             legend.selectAll('g')
@@ -233,9 +253,9 @@ const MapComponent = () => {
                     if (countryData) {
                         const colorValue = countryData[variable];
                         if (colorValue >= 1 && colorValue <= 7) {
-                            return womenColorScale(colorValue);
+                            return menColorScale(8 - colorValue); // Invert scale for men: 7 becomes 1 (dark purple)
                         } else if (colorValue >= 8 && colorValue <= 14) {
-                            return menColorScale(colorValue);
+                            return womenColorScale(colorValue - 7); // Shift scale for women: 8 becomes 1 (dark orange)
                         }
                     }
                     return '#cccccc'; // Default color for countries without data
@@ -272,22 +292,28 @@ const MapComponent = () => {
                     ))}
                 </select>
             </div>
-            <div className="flex gap-x-3 mb-4">
-                {years.map(year => (
-                    <button
-                        key={year}
-                        style={{
-                            backgroundColor: selectedYear === year ? 'blue' : 'gray',
-                            color: 'white'
-                        }}
-                        className="text-white font-bold py-2 px-4 rounded"
-                        onClick={() => setSelectedYear(year)}
-                    >
-                        {year}
-                    </button>
-                ))}
-            </div>
             <svg ref={ref} />
+            <div className="slider-container" style={{ width: '960px', margin: '0 auto', marginTop: '20px' }}>
+                <Slider
+                    min={2002}
+                    max={2020}
+                    step={2}
+                    marks={{
+                        2002: '2002',
+                        2004: '2004',
+                        2006: '2006',
+                        2008: '2008',
+                        2010: '2010',
+                        2012: '2012',
+                        2014: '2014',
+                        2016: '2016',
+                        2018: '2018',
+                        2020: '2020'
+                    }}
+                    defaultValue={2002}
+                    onChange={(value) => setSelectedYear(value)}
+                />
+            </div>
         </div>
     );
 }
