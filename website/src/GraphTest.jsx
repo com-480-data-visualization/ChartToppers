@@ -10,6 +10,19 @@ const GraphTest = ({ variable }) => {
   const [means, setMeans] = useState({ meanMen: 0, meanWomen: 0 });
   const [selectedYear, setSelectedYear] = useState("2002");
 
+  const buttonTexts = {
+    wellbeing: "Wellbeing related text.",
+    internet: "Internet related text.",
+    relig: "Religion related text.",
+    social: "Social related text.",
+    finstab: "Financial stability related text.",
+    conservatism: "Conservatism related text.",
+    anti_imm: "Anti-immigration related text.",
+    trust: "Trust related text.",
+  };
+
+  const [text, setText] = useState(buttonTexts["wellbeing"]); // State to hold the text
+
   // Fetch and parse the CSV data
   useEffect(() => {
     d3.csv(dataUrl).then((data) => {
@@ -125,6 +138,44 @@ const GraphTest = ({ variable }) => {
         .style("opacity", 0)
         .remove();
 
+      // Add the tooltip div
+      const tooltip = d3
+        .select("body")
+        .append("div")
+        .attr("class", "tooltip")
+        .style("position", "absolute")
+        .style("background", "#f9f9f9")
+        .style("padding", "5px")
+        .style("border", "1px solid #d3d3d3")
+        .style("border-radius", "5px")
+        .style("opacity", 0);
+
+      const showTooltip = (event, d) => {
+        tooltip.transition().duration(200).style("opacity", 0.9);
+        tooltip
+          .html(
+            `Country: ${d.country}<br/>Men: ${d.blueValue}<br/>Women: ${d.yellowValue}`
+          )
+          .style("left", event.pageX + 5 + "px")
+          .style("top", event.pageY - 28 + "px");
+
+        // Highlight the dots and line
+        d3.selectAll(`.dot-${d.country}`)
+          .attr("stroke", "black")
+          .attr("stroke-width", 2);
+
+        d3.select(`.line-${d.country}`).attr("stroke-width", 3);
+      };
+
+      const hideTooltip = (event, d) => {
+        tooltip.transition().duration(500).style("opacity", 0);
+
+        // Remove highlight from dots and line
+        d3.selectAll(`.dot-${d.country}`).attr("stroke", "none");
+
+        d3.select(`.line-${d.country}`).attr("stroke-width", 1);
+      };
+
       // Add lines between blue and yellow points for each country
       data.forEach((d) => {
         svg
@@ -186,44 +237,6 @@ const GraphTest = ({ variable }) => {
         .attr("fill", "orange")
         .text(`Women: ${means.meanWomen.toFixed(2)}`);
 
-      // Add the tooltip div
-      const tooltip = d3
-        .select("body")
-        .append("div")
-        .attr("class", "tooltip")
-        .style("position", "absolute")
-        .style("background", "#f9f9f9")
-        .style("padding", "5px")
-        .style("border", "1px solid #d3d3d3")
-        .style("border-radius", "5px")
-        .style("opacity", 0);
-
-      const showTooltip = (event, d) => {
-        tooltip.transition().duration(200).style("opacity", 0.9);
-        tooltip
-          .html(
-            `Country: ${d.country}<br/>Men: ${d.blueValue}<br/>Women: ${d.yellowValue}`
-          )
-          .style("left", event.pageX + 5 + "px")
-          .style("top", event.pageY - 28 + "px");
-
-        // Highlight the dots and line
-        d3.selectAll(`.dot-${d.country}`)
-          .attr("stroke", "black")
-          .attr("stroke-width", 2);
-
-        d3.select(`.line-${d.country}`).attr("stroke-width", 3);
-      };
-
-      const hideTooltip = (event, d) => {
-        tooltip.transition().duration(500).style("opacity", 0);
-
-        // Remove highlight from dots and line
-        d3.selectAll(`.dot-${d.country}`).attr("stroke", "none");
-
-        d3.select(`.line-${d.country}`).attr("stroke-width", 1);
-      };
-
       const blueDots = svg.selectAll(".dot.blue").data(data, (d) => d.country);
 
       // Exit
@@ -282,6 +295,10 @@ const GraphTest = ({ variable }) => {
     }
   }, [data, means]);
 
+  useEffect(() => {
+    setText(buttonTexts[variable]);
+  }, [variable]);
+
   return (
     <div className="flex-col justify-center">
       <svg ref={d3Container} />
@@ -310,6 +327,7 @@ const GraphTest = ({ variable }) => {
           onChange={(value) => setSelectedYear(value.toString())}
         />
       </div>
+      <p className="mt-12">{text}</p>
     </div>
   );
 };

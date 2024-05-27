@@ -5,6 +5,7 @@ import { csv } from 'd3-fetch';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import dataUrl from './data/figure_2_choropleth.csv?url';
+import europeJson from './data/europe.geojson?url';
 
 const years = [2002, 2004, 2006, 2008, 2010, 2012, 2014, 2016, 2018, 2020];
 const categories = ['wellbeing_color', 'media_color', 'internet_color', 'relig_color', 'social_color', 'finstab_color', 'conservatism_color', 'trust_color'];
@@ -20,57 +21,7 @@ const colors = {
 };
 const ageGroups = ["<25", "25-39", "40-59", "60+", "AGGREGATE"];
 
-const countryNameMapping = {
-    "Albania": "Albania",
-    "Austria": "Austria",
-    "Belgium": "Belgium",
-    "Bulgaria": "Bulgaria",
-    "Croatia": "Croatia",
-    "Cyprus": "Cyprus",
-    "Czechia": "Czech Republic",
-    "Denmark": "Denmark",
-    "Estonia": "Estonia",
-    "Finland": "Finland",
-    "France": "France",
-    "Germany": "Germany",
-    "Greece": "Greece",
-    "Hungary": "Hungary",
-    "Iceland": "Iceland",
-    "Ireland": "Ireland",
-    "Israel": "Israel",
-    "Italy": "Italy",
-    "Kosovo": "Kosovo",
-    "Latvia": "Latvia",
-    "Lithuania": "Lithuania",
-    "Luxembourg": "Luxembourg",
-    "Montenegro": "Montenegro",
-    "Netherlands": "Netherlands",
-    "North Macedonia": "Macedonia",
-    "Norway": "Norway",
-    "Poland": "Poland",
-    "Portugal": "Portugal",
-    "Romania": "Romania",
-    "Russian Federation": "Russia",
-    "Serbia": "Serbia",
-    "Slovakia": "Slovakia",
-    "Slovenia": "Slovenia",
-    "Spain": "Spain",
-    "Sweden": "Sweden",
-    "Switzerland": "Switzerland",
-    "Turkey": "Turkey",
-    "Ukraine": "Ukraine",
-    "United Kingdom": "United Kingdom",
-    "Bosnia and Herzegovina": "Bosnia and Herzegovina",
-    "Moldova": "Moldova",
-    "Tunisia": "Tunisia",
-    "Georgia": "Georgia",
-    "Armenia": "Armenia",
-    "Lebanon": "Lebanon",
-    "Republic of Serbia": "Serbia",
-    "United Kingdom" : "England"
-};
-
-const MapComponent = ({variable}) => {
+const MapComponent = ({ variable }) => {
     const ref = useRef();
     const [selectedYear, setSelectedYear] = useState(2002);
     const [selectedAgeGroup, setSelectedAgeGroup] = useState('AGGREGATE');
@@ -89,36 +40,14 @@ const MapComponent = ({variable}) => {
     useEffect(() => {
         if (data !== null) {
             const filtered = data.filter(d => +d.essround_yr === selectedYear && d.age_group === selectedAgeGroup);
-            console.log("Filtered Data: ", filtered);
             const dataMap = {};
             filtered.forEach(d => {
-                const countryName = countryNameMapping[d.country];
+                const countryName = d.country;
                 if (countryName) {
                     dataMap[countryName] = {
-                        wellbeing_color: +d.wellbeing_color,
-                        wellbeing_men: +d.wellbeing_men,
-                        wellbeing_woman: +d.wellbeing_woman,
-                        media_color: +d.media_color,
-                        media_men: +d.media_men,
-                        media_woman: +d.media_woman,
-                        internet_color: +d.internet_color,
-                        internet_men: +d.internet_men,
-                        internet_woman: +d.internet_woman,
-                        relig_color: +d.relig_color,
-                        relig_men: +d.relig_men,
-                        relig_woman: +d.relig_woman,
-                        social_color: +d.social_color,
-                        social_men: +d.social_men,
-                        social_woman: +d.social_woman,
-                        finstab_color: +d.finstab_color,
-                        finstab_men: +d.finstab_men,
-                        finstab_woman: +d.finstab_woman,
-                        conservatism_color: +d.conservatism_color,
-                        conservatism_men: +d.conservatism_men,
-                        conservatism_woman: +d.conservatism_woman,
-                        trust_color: +d.trust_color,
-                        trust_men: +d.trust_men,
-                        trust_woman: +d.trust_woman,
+                        [`${variable}_color`]: +d[`${variable}_color`],
+                        [`${variable}_men`]: +d[`${variable}_men`],
+                        [`${variable}_woman`]: +d[`${variable}_woman`]
                     };
                 }
             });
@@ -158,7 +87,9 @@ const MapComponent = ({variable}) => {
             .style('border-radius', '4px')
             .style('box-shadow', '0 0 10px rgba(0, 0, 0, 0.5)');
 
-        d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson").then(geoData => {
+        d3.json(europeJson).then(geoData => {
+            svg.selectAll('path').remove();
+            svg.selectAll('text').remove();
             const paths = g.selectAll('path')
                 .data(geoData.features)
                 .enter().append('path')
@@ -263,7 +194,7 @@ const MapComponent = ({variable}) => {
             updateMapColors();
         });
 
-    }, [selectedYear, selectedAgeGroup, variable, filteredData]);
+    }, [filteredData]);
 
     return (
         <div>
