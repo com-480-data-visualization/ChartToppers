@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import Example from "./Example"; // Assuming Example.js is correctly set up
-import "./App.css"; // Ensure App.css is correctly imported
+import Example from "./Example"; 
+import "./App.css"; 
 import Banner from "./Banner";
 import BarChart from "./BarChart";
 import GraphTest from "./GraphTest";
-import MapComponent from "./MapComponent"; // Import the updated MapComponent
+import MapComponent from "./MapComponent"; 
 
 function App() {
 
@@ -14,10 +14,10 @@ function App() {
     <div className="App">
       <Banner setVariable={setVariable} />
       <header className="App-header">
-        <h1 className="text-5xl w-96">
+        <h1>
           How Are European Views on Politics and Society Changing?
         </h1>
-        <div className="text-base w-3/4 mt-10">
+        <div className="description">
           <p>
             Across Europe, a quiet change is brewing. Inspired by an Economist
             article on the growing divide between young men and women, this
@@ -34,7 +34,6 @@ function App() {
           </p>
         </div>
       </header>
-
 
       <section className="section">
         <h2 className="text-3xl w-96 ml-7 mt-5">

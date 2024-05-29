@@ -1,54 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Banner = ({ setVariable }) => {
+  const [selected, setSelected] = useState("wellbeing");
+
+  const handleButtonClick = (variable) => {
+    setVariable(variable);
+    setSelected(variable);
+  };
+
+  const buttonClass = (variable) =>
+    selected === variable
+      ? "bg-white text-blue-800 font-bold py-2 px-6 rounded border-2 border-white"
+      : "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded border-2 border-white";
+
   return (
-    <div className="bg-gray-800 text-white fixed top-0 w-full flex justify-around items-center p-4 z-50">
+    <div className="bg-[#00006e] text-white fixed top-0 w-full flex justify-around items-center p-4 z-50">
       <button
         id="btn-1"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => setVariable("wellbeing")}
+        className={buttonClass("wellbeing")}
+        onClick={() => handleButtonClick("wellbeing")}
       >
         Wellbeing
       </button>
       <button
         id="btn-2"
-        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => setVariable("internet")}
+        className={buttonClass("internet")}
+        onClick={() => handleButtonClick("internet")}
       >
         Internet
       </button>
       <button
         id="btn-3"
-        className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => setVariable("relig")}
+        className={buttonClass("relig")}
+        onClick={() => handleButtonClick("relig")}
       >
         Religion
       </button>
       <button
         id="btn-4"
-        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => setVariable("social")}
+        className={buttonClass("social")}
+        onClick={() => handleButtonClick("social")}
       >
-        Social ?
+        Social
       </button>
       <button
         id="btn-5"
-        className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => setVariable("finstab")}
+        className={buttonClass("finstab")}
+        onClick={() => handleButtonClick("finstab")}
       >
         Financial Stability
       </button>
       <button
         id="btn-6"
-        className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => setVariable("conservatism")}
+        className={buttonClass("conservatism")}
+        onClick={() => handleButtonClick("conservatism")}
       >
         Conservatism
       </button>
       <button
         id="btn-7"
-        className=" bg-lime-400 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => setVariable("trust")}
+        className={buttonClass("trust")}
+        onClick={() => handleButtonClick("trust")}
       >
         Trust
       </button>
