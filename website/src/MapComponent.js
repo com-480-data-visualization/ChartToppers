@@ -6,8 +6,10 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import dataUrl from './data/figure_2_choropleth.csv?url';
 import europeJson from './data/europe.geojson?url';
+import ordinalDataUrl from './data/figure_3_ordinal.csv?url';
 
 const years = [2002, 2004, 2006, 2008, 2010, 2012, 2014, 2016, 2018, 2020];
+
 const categories = ['wellbeing_color', 'media_color', 'internet_color', 'relig_color', 'social_color', 'finstab_color', 'conservatism_color', 'trust_color'];
 const colors = {
     wellbeing_color: "#F8AD1A",
@@ -26,6 +28,7 @@ const MapComponent = ({ variable }) => {
     const [selectedYear, setSelectedYear] = useState(2002);
     const [selectedAgeGroup, setSelectedAgeGroup] = useState('AGGREGATE');
     const [data, setData] = useState(null);
+    const [ordinalData, setOrdinalData] = useState(null);
     const [filteredData, setFilteredData] = useState({});
 
     useEffect(() => {
@@ -33,6 +36,13 @@ const MapComponent = ({ variable }) => {
             .then(csvData => {
                 console.log("CSV Data Loaded: ", csvData);
                 setData(csvData);
+            })
+            .catch(err => console.error(err));
+
+        csv(ordinalDataUrl)
+            .then(csvData => {
+                console.log("Ordinal Data Loaded: ", csvData);
+                setOrdinalData(csvData);
             })
             .catch(err => console.error(err));
     }, []);
@@ -77,12 +87,14 @@ const MapComponent = ({ variable }) => {
             .domain([1, 7])
             .interpolator(d3.interpolateRgbBasis(['#dadaeb', '#bcbddc', '#9e9ac8', '#807dba', '#6a51a3', '#54278f', '#3f007d']));
 
+
         const tooltip = d3.select('body').append('div')
             .attr('class', 'tooltip')
             .style('position', 'absolute')
             .style('visibility', 'hidden')
-            .style('background', '#fff')
-            .style('border', '1px solid #ccc')
+            .style('background', 'rgba(51, 51, 51, 0.8)') // Dark background with transparency
+            .style('color', '#fff') // White text
+            .style('border', '1px solid #fff') // White border
             .style('padding', '10px')
             .style('border-radius', '4px')
             .style('box-shadow', '0 0 10px rgba(0, 0, 0, 0.5)');
@@ -96,24 +108,27 @@ const MapComponent = ({ variable }) => {
                 .attr('d', path)
                 .attr('stroke', 'white')
                 .attr('stroke-width', 1.5)
-                .on('mouseover', function(event, d) {
+                .on('mouseover', function (event, d) {
                     d3.select(this).attr('fill', '#6e6e6e');
                     const countryName = d.properties.name;
                     const countryData = filteredData[countryName];
                     if (countryData) {
                         tooltip.html(`<strong>${countryName}</strong><br>
-                            ${variable} Men: ${countryData[`${variable}_men`]}<br>
-                            ${variable} Women: ${countryData[`${variable}_woman`]}`)
+                            Men: ${countryData[`${variable}_men`]}<br>
+                            Women: ${countryData[`${variable}_woman`]}`)
                             .style('visibility', 'visible');
+
+                        createLineChart(countryName);
                     }
                 })
-                .on('mousemove', function(event) {
+                .on('mousemove', function (event) {
                     tooltip.style('top', (event.pageY - 10) + 'px')
                         .style('left', (event.pageX + 10) + 'px');
                 })
-                .on('mouseout', function(event, d) {
-                    updateMapColors(); 
+                .on('mouseout', function (event, d) {
+                    updateMapColors();
                     tooltip.style('visibility', 'hidden');
+                    tooltip.selectAll('svg').remove();
                 });
 
             g.selectAll('text')
@@ -125,55 +140,49 @@ const MapComponent = ({ variable }) => {
                 .text(d => d.properties.name)
                 .attr('text-anchor', 'middle')
                 .attr('alignment-baseline', 'middle')
-                .style('font-size', 11)
-                .style('fill', 'black');
+                .style('font-size', 12)
+                .style('fill', '#000')
+                .style('stroke', 'white')
+                .style('stroke-width', '0.05px');
 
-            // Clear previous legend if it exists
             svg.select('.legend-frame').remove();
 
             const legendFrame = svg.append('g')
-                .attr('transform', 'translate(900, 700)')
+                .attr('transform', 'translate(690, 775)')
                 .attr('class', 'legend-frame');
 
+            const defs = svg.append("defs");
+
+            const gradient = defs.append("linearGradient")
+                .attr("id", "legend-gradient")
+                .attr("x1", "0%")
+                .attr("x2", "100%")
+                .attr("y1", "0%")
+                .attr("y2", "0%");
+
+            const legendColors = ['#7f2704', '#a63603', '#d94801', '#f16913', '#fd8d3c', '#fdae6b', '#fdd0a2', '#dadaeb', '#bcbddc', '#9e9ac8', '#807dba', '#6a51a3', '#54278f', '#3f007d'];
+
+            legendColors.forEach((color, i) => {
+                gradient.append("stop")
+                    .attr("offset", `${(i / (legendColors.length - 1)) * 100}%`)
+                    .attr("stop-color", color);
+            });
+
             legendFrame.append('rect')
-                .attr('width', 250)
-                .attr('height', 90)
-                .attr('fill', '#f0f0f0')
+                .attr('width', 500)
+                .attr('height', 20)
+                .attr('fill', 'url(#legend-gradient)')
                 .attr('stroke', 'black')
                 .attr('stroke-width', 1.5);
 
-            const legend = legendFrame.append('g')
-                .attr('transform', 'translate(10, 10)');
-
-            const legendData = [
-                { label: 'Women', colors: ['#fdd0a2', '#fdae6b', '#fd8d3c', '#f16913', '#d94801', '#a63603', '#7f2704'] },
-                { label: 'Men', colors: ['#dadaeb', '#bcbddc', '#9e9ac8', '#807dba', '#6a51a3', '#54278f', '#3f007d'] }
-            ];
-
-            legend.selectAll('g')
-                .data(legendData)
-                .enter()
-                .append('g')
-                .each(function(d, i) {
-                    const g = d3.select(this);
-                    g.selectAll('rect')
-                        .data(d.colors)
-                        .enter()
-                        .append('rect')
-                        .attr('x', (color, j) => j * 20)
-                        .attr('y', i * 25)
-                        .attr('width', 20)
-                        .attr('height', 20)
-                        .style('fill', color => color);
-
-                    g.append('text')
-                        .attr('x', d.colors.length * 20 + 5)
-                        .attr('y', i * 25 + 15)
-                        .attr('dy', '.35em')
-                        .text(d.label)
-                        .style('font-size', 12)
-                        .style('fill', 'black');
-                });
+            legendFrame.append('text')
+                .attr('x', 200)
+                .attr('y', 10)
+                .attr('dy', '.35em')
+                .text('Women to Men Scale')
+                .style('font-size', 14)
+                .style('fill', 'black')
+                .style('font-weight', 'bold');
 
             const updateMapColors = () => {
                 paths.attr('fill', d => {
@@ -194,7 +203,84 @@ const MapComponent = ({ variable }) => {
             updateMapColors();
         });
 
-    }, [filteredData]);
+        const createLineChart = (countryName) => {
+            if (!ordinalData) return;
+
+            const countryData = ordinalData.filter(d => d.country_full === countryName);
+
+            if (countryData.length === 0) return;
+
+            const width = 180;
+            const height = 100;
+            const margin = { top: 10, right: 25, bottom: 35, left: 30 };
+
+            const svg = tooltip.append('svg')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+                .append('g')
+                .attr('transform', `translate(${margin.left},${margin.top})`);
+
+            const xScale = d3.scalePoint()
+                .domain(years)
+                .range([0, width]);
+
+            const yScale = d3.scaleLinear()
+                .domain([1, 6])
+                .range([height, 0]);
+
+            svg.append('g')
+                .attr('transform', `translate(0,${height})`)
+                .call(d3.axisBottom(xScale).tickFormat(d3.format('')).ticks(years.length).tickSize(2)) // Smaller x axis size
+                .selectAll("text")
+                .attr("transform", "rotate(-90)")
+                .style("text-anchor", "end"); // Rotate x-axis labels
+
+            svg.append('g')
+                .call(d3.axisLeft(yScale).ticks(5).tickSize(2)); //  y axis size
+
+            const menLine = d3.line()
+                .x(d => xScale(+d.year))
+                .y(d => yScale(+d[`${variable}_men`]));
+
+            const womenLine = d3.line()
+                .x(d => xScale(+d.year))
+                .y(d => yScale(+d[`${variable}_woman`]));
+
+            svg.append('path')
+                .datum(countryData)
+                .attr('fill', 'none')
+                .attr('stroke', '#54278f')
+                .attr('stroke-width', 1.5)
+                .attr('d', menLine);
+
+            svg.append('path')
+                .datum(countryData)
+                .attr('fill', 'none')
+                .attr('stroke', '#f16913')
+                .attr('stroke-width', 1.5)
+                .attr('d', womenLine);
+
+            svg.selectAll('circle.men')
+                .data(countryData)
+                .enter()
+                .append('circle')
+                .attr('class', 'men')
+                .attr('cx', d => xScale(+d.year))
+                .attr('cy', d => yScale(+d[`${variable}_men`]))
+                .attr('r', 3)
+                .attr('fill', '#54278f');
+
+            svg.selectAll('circle.women')
+                .data(countryData)
+                .enter()
+                .append('circle')
+                .attr('class', 'women')
+                .attr('cx', d => xScale(+d.year))
+                .attr('cy', d => yScale(+d[`${variable}_woman`]))
+                .attr('r', 3)
+                .attr('fill', '#f16913');
+        };
+    }, [filteredData, ordinalData, variable]);
 
     return (
         <div>
