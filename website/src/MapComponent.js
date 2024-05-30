@@ -272,9 +272,7 @@ const MapComponent = ({ variable }) => {
         .append("rect")
         .attr("width", 500)
         .attr("height", 20)
-        .attr("fill", "url(#legend-gradient)")
-
-        .attr("stroke-width", 1.5);
+        .attr("fill", "url(#legend-gradient)");
 
       legendFrame
         .append("text")
@@ -322,7 +320,12 @@ const MapComponent = ({ variable }) => {
         (d) => d.country_full === countryName
       );
 
-      if (countryData.length === 0) return;
+      // Filter out data points with missing values
+      const filteredCountryData = countryData.filter(
+        (d) => d[`${variable}_men`] !== '' && d[`${variable}_woman`] !== ''
+      );
+
+      if (filteredCountryData.length === 0) return;
 
       const width = 180;
       const height = 100;
@@ -367,7 +370,7 @@ const MapComponent = ({ variable }) => {
 
       svg
         .append("path")
-        .datum(countryData)
+        .datum(filteredCountryData)
         .attr("fill", "none")
         .attr("stroke", "#54278f")
         .attr("stroke-width", 1.5)
@@ -375,7 +378,7 @@ const MapComponent = ({ variable }) => {
 
       svg
         .append("path")
-        .datum(countryData)
+        .datum(filteredCountryData)
         .attr("fill", "none")
         .attr("stroke", "#f16913")
         .attr("stroke-width", 1.5)
@@ -383,7 +386,7 @@ const MapComponent = ({ variable }) => {
 
       svg
         .selectAll("circle.men")
-        .data(countryData)
+        .data(filteredCountryData)
         .enter()
         .append("circle")
         .attr("class", "men")
@@ -394,7 +397,7 @@ const MapComponent = ({ variable }) => {
 
       svg
         .selectAll("circle.women")
-        .data(countryData)
+        .data(filteredCountryData)
         .enter()
         .append("circle")
         .attr("class", "women")

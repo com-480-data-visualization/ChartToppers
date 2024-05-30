@@ -1,8 +1,7 @@
 :root {
   /* Light theme colors */
-  --background-color: linear-gradient(to bottom, #yellow, #white);
+  --background-color: white;
   --text-color: black;
-  --header-background:linear-gradient(to bottom, #yellow, #white);
   --header-text-color: #00006e;
   --description-text-color: #00006e;
   --component-background: white;
@@ -13,9 +12,8 @@
   /* Dark theme colors */
   --background-color: #2e2e2e;
   --text-color: white;
-  --header-background: linear-gradient(to bottom, #00006e, #121212); 
-  --header-text-color: #cfcfcf;
-  --description-text-color: #cfcfcf;
+  --header-text-color: #white;
+  --description-text-color: #white;
   --component-background: #2e2e2e;
   --link-color: #ffff00;
 }
