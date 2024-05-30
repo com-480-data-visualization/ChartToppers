@@ -1,0 +1,18 @@
+/* slider.css */
+.rc-slider-track {
+  background-color: #3c82f6 !important;
+}
+
+.rc-slider-handle {
+  border-color: #3c82f6 !important;
+  background-color: #3c82f6 !important;
+}
+
+.rc-slider-rail {
+  background-color: #d0d7df !important;
+}
+
+.rc-slider-dot {
+  border-color: #3c82f6 !important;
+  background-color: #3c82f6 !important;
+}
