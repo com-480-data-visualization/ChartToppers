@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'bespoke': ['BespokeSerif', 'sans-serif'], // Custom font family
+        'bespoke': ['BespokeSerif', 'serif'], // Custom font family
       },
       fontWeight: {
         'light': 300,

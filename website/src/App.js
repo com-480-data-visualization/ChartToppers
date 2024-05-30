@@ -6,6 +6,8 @@ import BarChart from "./BarChart";
 import GraphTest from "./GraphTest";
 import MapComponent from "./MapComponent"; 
 import './fonts.css'; // Import the custom font CSS file
+import Summary from "./Summary";
+
 
 function App() {
   const [variable, setVariable] = useState("wellbeing");
@@ -115,6 +117,9 @@ function App() {
         <div>
           <GraphTest variable={variable} />
         </div>
+      </section>
+      <section className="App-header">
+        <Summary />
       </section>
     </div>
   );
