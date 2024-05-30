@@ -19,13 +19,13 @@ function App() {
           How Are European Views on Politics and Society Changing?
         </p>
         <div className="description">
-          <p className="font-bespoke font-light text-[#00006e]">
+          <p className="font-bespoke font-light text-[#00006e] text-justify">
             Across Europe, a quiet change is brewing. Inspired by an Economist
             article on the growing divide between young men and women, this
             project dives into the European Social Survey (ESS) to explore how
             social norms and political attitudes vary by generation and gender.
           </p>
-          <p className="font-bespoke font-light mt-6 text-[#00006e]">
+          <p className="font-bespoke font-light mt-6 text-[#00006e] text-justify">
             We'll be looking beyond just education and politics, examining
             everyday habits like media consumption and life situations like
             financial stress to see if they create these differences. Our goal?
@@ -40,7 +40,7 @@ function App() {
         <h2 className="text-3xl w-96 ml-7 mt-5 font-bespoke font-medium">
           1. Bar Chart: Setting the Stage
         </h2>
-        <p className="text-base w-3/4 mt-10 text-container font-bespoke font-light">
+        <p className="w-3/4 mt-10 text-container font-bespoke font-light text-justify">
           Our journey starts with a Europe-wide snapshot. This bar chart shows
           average levels of a chosen variable (like trust in institutions) for
           four different age groups over time. This helps you get a feel for
@@ -53,7 +53,7 @@ function App() {
       </section>
 
       <section className="section">
-        <h2 className="text-3xl w-96 ml-7 mt-5 font-bespoke font-medium">
+        <h2 className="text-3xl w-96 ml-7 mt-5 font-bespoke font-medium text-justify">
           2. Gender Divide Across Europe
         </h2>
         <p className="text-base w-3/4 mt-10 text-container font-bespoke font-light">
