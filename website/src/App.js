@@ -10,6 +10,7 @@ import './fonts.css'; // Import the custom font CSS file
 function App() {
   const [variable, setVariable] = useState("wellbeing");
   const [showBanner, setShowBanner] = useState(false);
+  const [theme, setTheme] = useState('light');
   const headerRef = useRef(null);
 
   const handleMouseMove = (e) => {
@@ -18,8 +19,16 @@ function App() {
       setShowBanner(true);
     } else {
       setShowBanner(false);
-    }
+    };
   };
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
@@ -29,23 +38,25 @@ function App() {
   }, []);
 
   return (
+
     <div className="App">
       <Banner setVariable={setVariable} showBanner={showBanner} />
+      <button onClick={toggleTheme} className="theme-toggle">Night Mode</button>
       <header
         ref={headerRef}
-        className="App-header bg-gradient-to-b from-yellow-300 via-yellow-100 to-white p-6"
+        className={`App-header p-6 ${theme === 'light' ? 'bg-gradient-to-b from-yellow-300 via-yellow-100 to-white' : 'bg-gradient-to-b from-gray-600 via-gray-700 to-gray-800'}`}
       >
-        <p className="font-bespoke font-regular mx-8 mt-10 text-7xl w-3/4 text-[#00006e]">
+        <p className={`font-bespoke font-regular mx-8 mt-10 text-7xl w-3/4 ${theme === 'light' ? 'text-[#00006e]' : 'text-yellow-200'}`}>
           How Are European Views on Politics and Society Changing?
         </p>
         <div className="description">
-          <p className="font-bespoke font-light text-[#00006e] text-justify">
+          <p className={`font-bespoke font-light text-justify ${theme === 'light' ? 'text-[#00006e]' : 'text-yellow-200'}`}>
             Across Europe, a quiet change is brewing. Inspired by an Economist
             article on the growing divide between young men and women, this
             project dives into the European Social Survey (ESS) to explore how
             social norms and political attitudes vary by generation and gender.
           </p>
-          <p className="font-bespoke font-light mt-6 text-[#00006e] text-justify">
+          <p className={`font-bespoke font-light mt-6 text-justify ${theme === 'light' ? 'text-[#00006e]' : 'text-yellow-200'}`}>
             We'll be looking beyond just education and politics, examining
             everyday habits like media consumption and life situations like
             financial stress to see if they create these differences. Our goal?
@@ -55,6 +66,7 @@ function App() {
           </p>
         </div>
       </header>
+     
 
       <section className="section">
         <h2 className="text-3xl w-96 ml-7 mt-5 font-bespoke font-medium">
