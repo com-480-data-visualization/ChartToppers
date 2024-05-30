@@ -8,14 +8,34 @@ import MapComponent from "./MapComponent";
 import './fonts.css'; // Import the custom font CSS file
 
 function App() {
-
   const [variable, setVariable] = useState("wellbeing");
+  const [showBanner, setShowBanner] = useState(false);
+  const headerRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const screenWidth = window.innerWidth;
+    if (e.clientX < screenWidth / 5) {
+      setShowBanner(true);
+    } else {
+      setShowBanner(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
 
   return (
     <div className="App">
-      <Banner setVariable={setVariable} />
-      <header className="App-header bg-gradient-to-b from-yellow-300 via-yellow-100 to-white p-6">
-        <p className="font-bespoke font-regular mx-8 mt-20 text-7xl w-3/4 text-[#00006e]">
+      <Banner setVariable={setVariable} showBanner={showBanner} />
+      <header
+        ref={headerRef}
+        className="App-header bg-gradient-to-b from-yellow-300 via-yellow-100 to-white p-6"
+      >
+        <p className="font-bespoke font-regular mx-8 mt-10 text-7xl w-3/4 text-[#00006e]">
           How Are European Views on Politics and Society Changing?
         </p>
         <div className="description">
@@ -47,7 +67,7 @@ function App() {
           overall trends before we explore how these trends differ for men and
           women.
         </p>
-        <div >
+        <div>
           <BarChart variable={variable} />
         </div>
       </section>

@@ -173,15 +173,17 @@ const MapComponent = ({ variable }) => {
           return filteredData[countryName] ? 1 : 0; // Set border width based on data availability
         })
         .on("mouseover", function (event, d) {
-          d3.select(this).attr("fill", "#6e6e6e");
+          d3.select(this)
+            .attr("stroke", "black")
+            .attr("stroke-width", 3);
           const countryName = d.properties.name;
           const countryData = filteredData[countryName];
           if (countryData) {
             tooltip
               .html(
                 `<strong>${countryName}</strong><br>
-                Men: ${countryData[`${variable}_men`]}<br>
-                Women: ${countryData[`${variable}_woman`]}`
+                  Men: ${countryData[`${variable}_men`]}<br>
+                  Women: ${countryData[`${variable}_woman`]}`
               )
               .style("visibility", "visible");
 
@@ -202,6 +204,9 @@ const MapComponent = ({ variable }) => {
             "visibility",
             filteredData[d.properties.name] ? "visible" : "hidden"
           );
+          d3.select(this)
+            .attr("stroke", filteredData[d.properties.name] ? "white" : "none")
+            .attr("stroke-width", filteredData[d.properties.name] ? 1 : 0);
         });
 
       g.selectAll("text")

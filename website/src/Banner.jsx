@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Banner = ({ setVariable }) => {
+const Banner = ({ setVariable, showBanner }) => {
   const [selected, setSelected] = useState("wellbeing");
   const [hovered, setHovered] = useState("");
 
@@ -80,8 +80,8 @@ const Banner = ({ setVariable }) => {
 
   const buttonClass = (variable) =>
     selected === variable
-      ? "bg-white text-blue-800 font-bold py-2 px-10 rounded border-2 border-white shadow-md"
-      : "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-10  rounded shadow-md";
+      ? "bg-yellow-300 text-blue-800 font-bold py-2 px-3 rounded shadow-md"
+      : "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-3 rounded shadow-md";
 
   const handleMouseEnter = (category) => {
     setHovered(category);
@@ -92,56 +92,69 @@ const Banner = ({ setVariable }) => {
   };
 
   return (
-    <div className="bg-[#00006e] text-white fixed top-0 w-full flex justify-around items-center p-4 z-50 font-bespoke font-medium">
-      {Object.keys(categories).map((category) => (
-        <div
-          onMouseEnter={() => handleMouseEnter(category)}
-          onMouseLeave={handleMouseLeave}
-          className="relative"
-        >
-          <button
-            id={`btn-${category}`}
-            className={buttonClass(category)}
-            onClick={() => handleButtonClick(category)}
+    <div className="fixed top-1/2 left-0 transform -translate-y-1/2 z-50">
+      <div
+        className={`bg-transparent text-white h-auto flex flex-col justify-start items-start p-2 font-bespoke font-medium space-y-4 w-40 transition-transform duration-500 ease-in-out ${showBanner ? 'translate-x-0' : '-translate-x-full'}`}
+      >
+        {Object.keys(categories).map((category) => (
+          <div
+            key={category}
+            onMouseEnter={() => handleMouseEnter(category)}
+            onMouseLeave={handleMouseLeave}
+            className="relative w-full"
           >
-            {labels[category]}
-          </button>
-          {hovered === category && (
-            <div
-              className="absolute mt-4 bg-white text-black rounded shadow-lg text-left pl-3 p-2 font-bespoke font-light"
-              style={{
-                width:
-                  category === "wellbeing" || category === "trust"
-                    ? "150%"
-                    : "200%",
-                maxWidth: "300px",
-                left:
-                  category === "trust"
-                    ? "auto"
-                    : category === "wellbeing"
-                    ? "0"
-                    : "50%",
-                right: category === "trust" ? "0" : "auto",
-                transform:
-                  category === "wellbeing"
-                    ? "none"
-                    : category === "trust"
-                    ? "none"
-                    : "translateX(-50%)",
-              }}
+            <button
+              id={`btn-${category}`}
+              className={buttonClass(category) + " w-full text-left"}
+              onClick={() => handleButtonClick(category)}
             >
-              Index based on:
-              <ul className="list-disc pl-5">
-                {categories[category].map((variable) => (
-                  <li key={variable.key} className="">
-                    {variable.description}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+              {labels[category]}
+            </button>
+            {hovered === category && (
+              <div
+                className="absolute mt-2 bg-white text-black rounded shadow-lg text-left font-bespoke font-light ml-3"
+                style={{
+                  width: "200%",
+                  maxWidth: "300px",
+                  left: "100%",
+                  top: "-50%",
+                }}
+              >
+                Index based on:
+                <ul className="list-disc pl-5">
+                  {categories[category].map((variable) => (
+                    <li key={variable.key} className="">
+                      {variable.description}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      {!showBanner && (
+        <div
+          className="flex items-center text-blue-500 p-2 transition-transform duration-500 ease-in-out"
+        >
+          <div className="flex items-center">
+            <svg
+              className="w-10 h-10"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </div>
         </div>
-      ))}
+      )}
     </div>
   );
 };
