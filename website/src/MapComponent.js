@@ -273,18 +273,28 @@ const MapComponent = ({ variable }) => {
         .attr("width", 500)
         .attr("height", 20)
         .attr("fill", "url(#legend-gradient)")
-        .attr("stroke", "black")
+
         .attr("stroke-width", 1.5);
 
       legendFrame
         .append("text")
-        .attr("x", 200)
+        .attr("x", 10)
         .attr("y", 10)
         .attr("dy", ".35em")
-        .text("Gender differential")
+        .text("+1.4 Women")
         .style("font-size", 14)
-        .style("fill", "black")
-        .style("font-weight", "bold");
+        .style("fill", "white")
+        .style("font-weight");
+
+      legendFrame
+        .append("text")
+        .attr("x", 430)
+        .attr("y", 10)
+        .attr("dy", ".35em")
+        .text("Men +1.4")
+        .style("font-size", 14)
+        .style("fill", "white")
+        .style("font-weight");
 
       const updateMapColors = () => {
         paths.attr("fill", (d) => {
