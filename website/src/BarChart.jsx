@@ -70,7 +70,7 @@ const BarChart = ({ variable }) => {
 
     const z = d3
       .scaleOrdinal()
-      .range(["#cda6ac", "#bc8990", "#ab6b74", "#89565d"]);
+      .range(["#8bb3f5", "#3d81ee", "#3167be", "#254d8f"]);
 
     const xAxis = d3.axisBottom(x0);
     const yAxis = d3.axisLeft(y);

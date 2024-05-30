@@ -81,7 +81,7 @@ const Banner = ({ setVariable, showBanner }) => {
   const buttonClass = (variable) =>
     selected === variable
       ? "bg-yellow-300 text-blue-800 font-bold py-2 px-3 rounded shadow-md"
-      : "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-3 rounded shadow-md";
+      : "bg-[#04349c] hover:bg-[#04349c] text-white font-bold py-2 px-3 rounded shadow-md";
 
   const handleMouseEnter = (category) => {
     setHovered(category);
@@ -93,8 +93,31 @@ const Banner = ({ setVariable, showBanner }) => {
 
   return (
     <div className="fixed top-1/2 left-0 transform -translate-y-1/2 z-50">
+      {!showBanner && (
+        <div className="flex items-center text-blue-500 p-2 transition-transform duration-500 ease-in-out">
+          <div className="flex items-center animate-pulse">
+            <svg
+              className="w-10 h-10"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+            <span className="text-sm">Categories</span>
+          </div>
+        </div>
+      )}
       <div
-        className={`bg-transparent text-white h-auto flex flex-col justify-start items-start p-2 font-bespoke font-medium space-y-4 w-40 transition-transform duration-500 ease-in-out ${showBanner ? 'translate-x-0' : '-translate-x-full'}`}
+        className={`bg-transparent text-white h-auto flex flex-col justify-start items-start p-2 font-bespoke font-medium space-y-4 w-40 transition-transform duration-500 ease-in-out ${
+          showBanner ? "translate-x-0" : "-translate-x-full"
+        }`}
       >
         {Object.keys(categories).map((category) => (
           <div
@@ -112,7 +135,7 @@ const Banner = ({ setVariable, showBanner }) => {
             </button>
             {hovered === category && (
               <div
-                className="absolute mt-2 bg-white text-black rounded shadow-lg text-left font-bespoke font-light ml-3"
+                className="absolute mt-2 bg-[#4f71ba] text-white rounded shadow-2xl text-left font-bespoke font-light ml-3 p-3"
                 style={{
                   width: "200%",
                   maxWidth: "300px",
@@ -133,28 +156,6 @@ const Banner = ({ setVariable, showBanner }) => {
           </div>
         ))}
       </div>
-      {!showBanner && (
-        <div
-          className="flex items-center text-blue-500 p-2 transition-transform duration-500 ease-in-out"
-        >
-          <div className="flex items-center">
-            <svg
-              className="w-10 h-10"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
