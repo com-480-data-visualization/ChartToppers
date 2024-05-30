@@ -27,12 +27,6 @@
   padding: 40px 20px; 
 }
 
-.App-header h1 {
-  color: #00006e; 
-  font-size: 4.5rem; 
-  text-align: center;
-  margin-bottom: 25px; 
-}
 
 .App-header .description {
   color: #00006e;
@@ -70,8 +64,8 @@
 .component-container {
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
   margin-top: 20px;
 }
 

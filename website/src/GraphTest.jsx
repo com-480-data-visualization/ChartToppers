@@ -301,6 +301,7 @@ const GraphTest = ({ variable }) => {
 
   return (
     <div className="flex-col justify-center">
+      <p className="mb-12 font-bespoke font-light">{text}</p>
       <svg ref={d3Container} />
 
       <div
@@ -327,7 +328,7 @@ const GraphTest = ({ variable }) => {
           onChange={(value) => setSelectedYear(value.toString())}
         />
       </div>
-      <p className="mt-12">{text}</p>
+      
     </div>
   );
 };

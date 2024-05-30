@@ -243,7 +243,7 @@ const BarChart = ({ variable }) => {
   return (
     <div className="flex w-full ml-10">
       <div className="flex flex-col">
-        <p className="mb-4">{text}</p>
+        <p className="mb-4 font-bespoke font-light">{text}</p>
         <svg ref={chartRef} width="960" height="550"></svg>
       </div>
     </div>
