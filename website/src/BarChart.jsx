@@ -118,13 +118,17 @@ const BarChart = ({ variable }) => {
         svg.selectAll("rect").attr("opacity", 1);
       });
 
-    // Define the tooltip
+
     const tooltip = d3
       .select("body")
       .append("div")
       .attr("class", "tooltip")
       .style("position", "absolute")
-      .style("background", "white")
+      .style("background", "rgba(128, 128, 128, 0.7)") // Gray transparent background
+      .style("color", "white") // White text
+      .style("border", "1px solid #fff") // White border
+      .style("padding", "10px")
+      .style("border-radius", "4px")
       .style("border", "1px solid #ccc")
       .style("padding", "10px")
       .style("display", "none");

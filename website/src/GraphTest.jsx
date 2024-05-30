@@ -139,14 +139,16 @@ const GraphTest = ({ variable }) => {
         .remove();
 
       // Add the tooltip div
+      
       const tooltip = d3
         .select("body")
         .append("div")
         .attr("class", "tooltip")
         .style("position", "absolute")
-        .style("background", "#f9f9f9")
+        .style("background", "rgba(128, 128, 128, 0.7)") // Gray transparent background
+        .style("color", "white") // White text
+        .style("border", "1px solid #fff") // White border
         .style("padding", "5px")
-        .style("border", "1px solid #d3d3d3")
         .style("border-radius", "5px")
         .style("opacity", 0);
 

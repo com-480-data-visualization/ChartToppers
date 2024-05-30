@@ -48,17 +48,17 @@ function App() {
         ref={headerRef}
         className={`App-header p-6 ${theme === 'light' ? 'bg-gradient-to-b from-yellow-300 via-yellow-100 to-white' : 'bg-gradient-to-b from-gray-600 via-gray-700 to-gray-800'}`}
       >
-        <p className={`font-bespoke font-regular mx-8 mt-10 text-7xl w-3/4 ${theme === 'light' ? 'text-[#00006e]' : 'text-yellow-200'}`}>
+        <p className={`font-bespoke font-regular mx-8 mt-10 text-7xl w-3/4 ${theme === 'light' ? 'text-[#00006e]' : 'text-yellow-100'}`}>
           How Are European Views on Politics and Society Changing?
         </p>
         <div className="description">
-          <p className={`font-bespoke font-light text-justify ${theme === 'light' ? 'text-[#00006e]' : 'text-yellow-200'}`}>
+          <p className={`font-bespoke font-light text-justify ${theme === 'light' ? 'text-[#00006e]' : 'text-yellow-100'}`}>
             Across Europe, a quiet change is brewing. Inspired by an Economist
             article on the growing divide between young men and women, this
             project dives into the European Social Survey (ESS) to explore how
             social norms and political attitudes vary by generation and gender.
           </p>
-          <p className={`font-bespoke font-light mt-6 text-justify ${theme === 'light' ? 'text-[#00006e]' : 'text-yellow-200'}`}>
+          <p className={`font-bespoke font-light mt-6 text-justify ${theme === 'light' ? 'text-[#00006e]' : 'text-yellow-100'}`}>
             We'll be looking beyond just education and politics, examining
             everyday habits like media consumption and life situations like
             financial stress to see if they create these differences. Our goal?
