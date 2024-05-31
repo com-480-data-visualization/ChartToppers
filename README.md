@@ -160,6 +160,10 @@ The deliverables for milestone 2 can be found here:
 
 **80% of the final grade**
 
+The deliverable for milestone 3 can be found here:
+
+[Screencast](https://drive.google.com/file/d/1i6mzmwY3JM1qYD1PcLklppdw9gS2yAb6/view?usp=sharing)
+
 
 ## Late policy
 
