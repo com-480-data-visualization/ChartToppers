@@ -52,34 +52,40 @@ function App() {
           How Are European Views on Politics and Society Changing?
         </p>
         <div className="description">
-          <p className={`font-bespoke font-light text-justify ${theme === 'light' ? 'text-[#00006e]' : 'text-yellow-100'}`}>
-            Across Europe, a quiet change is brewing. Inspired by an Economist
-            article on the growing divide between young men and women, this
-            project dives into the European Social Survey (ESS) to explore how
-            social norms and political attitudes vary by generation and gender.
+          <p className={`font-bespoke font-light text-justify  ${theme === 'light' ? 'text-[#00006e]' : 'text-yellow-100'}`}>
+          Inspired by an Economist article on the growing divide between young
+           men and women, this project dives into the European Social Survey
+          (ESS) to explore how beliefs, behavior, and life outcomes vary by
+          generation and gender. 
+
           </p>
-          <p className={`font-bespoke font-light mt-6 text-justify ${theme === 'light' ? 'text-[#00006e]' : 'text-yellow-100'}`}>
-            We'll be looking beyond just education and politics, examining
-            everyday habits like media consumption and life situations like
-            financial stress to see if they create these differences. Our goal?
-            To create an accessible and informative visualization that sheds
-            light on these trends, sparking a conversation about where European
-            society might be headed.
+          <p className={`font-bespoke font-light mt-4 text-justify ${theme === 'light' ? 'text-[#00006e]' : 'text-yellow-100'}`}>
+          We'll be probing for trends in everything
+          from religious activity to financial stability.
+          Our goal? 
+          To create accessible and informative visualizations
+          that distill a sprawling survey into valuable insights – and
+          hopefully spark a conversation about European society’s future
+          along the way. Throughout this page, we visualize indices for
+          seven different topics concerning the lives of Europeans.
+          Navigate your curser to the left to see possibilities.
+          Each topic’s index is created by scaling responses for a set
+          of similar ESS questions between 1 (low) and 6 (high) before
+          averaging by gender, age, and/or year. Hover over a topic 
+          to see the set of survey questions.
+            
           </p>
         </div>
       </header>
      
 
       <section className="section">
-        <h2 className="text-3xl w-96 ml-7 mt-5 font-bespoke font-medium">
-          1. Bar Chart: Setting the Stage
+        <h2 className="text-3xl w-full text-center font-bespoke font-medium">
+          Setting the Stage: Exploring European Preferences by Age Group
+
         </h2>
         <p className="w-3/4 mt-10 text-container font-bespoke font-light text-justify">
-          Our journey starts with a Europe-wide snapshot. This bar chart shows
-          average levels of a chosen variable (like trust in institutions) for
-          four different age groups over time. This helps you get a feel for
-          overall trends before we explore how these trends differ for men and
-          women.
+          We begin with a Europe-wide snapshot. The bar chart below displays the average level of a chosen category’s index for four different age groups over time. It should help you orient yourself with overall trends before exploring differences between men and women.
         </p>
         <div>
           <BarChart variable={variable} />
@@ -87,15 +93,12 @@ function App() {
       </section>
 
       <section className="section">
-        <h2 className="text-3xl w-96 ml-7 mt-5 font-bespoke font-medium text-justify">
-          2. Gender Divide Across Europe
+        <h2 className="text-3xl w-full text-center font-bespoke font-medium">
+            Zooming In: Gender Comparison Within European Nations
+
         </h2>
-        <p className="text-base w-3/4 mt-10 text-container font-bespoke font-light">
-          Next, we zoom in to see how men and women compare across Europe. This
-          heatmap uses color to show where women or men report higher levels of a
-          chosen variable, like political participation. You can select an age
-          group and drag the year slider to see how these differences change over
-          time. Hover over a country to see a detailed breakdown by year.
+        <p className="w-3/4 mt-10 text-container font-bespoke font-light text-justify">
+          Next, we zoom in to see how men and women compare across Europe. This choropleth uses color to show where women or men report higher levels of a chosen category’s index. The darker the shade of blue, the higher the category’s index is for men relative to women (vice versa for orange and women relative to men). At the bottom, you can select an age group and drag the year slider to slice the index in different ways. Hover over a country to see a detailed breakdown by year
         </p>
         <div id="map" className="component-container">
           <MapComponent variable={variable}/>
@@ -103,16 +106,11 @@ function App() {
       </section>
 
       <section className="section">
-        <h2 className="text-3xl w-96 ml-7 mt-5 font-bespoke font-medium">
-          3. Ranking the Gender Divide
+        <h2 className="text-3xl w-full text-center font-bespoke font-medium">
+          Ranking the Gender Divide Across Europe
         </h2>
-        <p className="text-base w-3/4 mt-10 text-container font-bespoke font-light">
-          This final view lets you compare countries side-by-side. It shows a
-          ranked list of European nations based on the chosen variable's gender
-          gap in a specific year. Hover over a country to see the exact numbers
-          and how the gap breaks down by age group. This lets you see which
-          countries have the biggest differences in, for example, media
-          consumption habits between men and women.
+        <p className="text-base w-3/4 mt-10 text-container font-bespoke font-light text-justify">
+          We hope you enjoyed this study of Europeans male, female, young, and old! Remember to select another category on the left and continue investigating!
         </p>
         <div>
           <GraphTest variable={variable} />

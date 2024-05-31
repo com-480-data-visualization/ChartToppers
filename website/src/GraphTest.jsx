@@ -11,14 +11,14 @@ const GraphTest = ({ variable }) => {
   const [selectedYear, setSelectedYear] = useState("2002");
 
   const buttonTexts = {
-    wellbeing: "Wellbeing related text.",
-    internet: "Internet related text.",
-    relig: "Religion related text.",
-    social: "Social related text.",
-    finstab: "Financial stability related text.",
-    conservatism: "Conservatism related text.",
-    anti_imm: "Anti-immigration related text.",
-    trust: "Trust related text.",
+    wellbeing: "We find aggregate wellbeing oscillating for both women and men, though the gap does slim as the years proceed. Meanwhile, variance in wellbeing is relatively higher between 2004 and 2012, but after this period, different countries start to converge in level if not gender gap.",
+    internet: "By the end of the time range, the gender gap in internet usage is almost completely erased, the number of countries in which men report more internet usage is about equal to the number of countries in which women report more internet usage, and country-level gender gaps in internet usage become much smaller. This shift is speedy; even comparing 2018 and 2020 we find a marked pullback in average size of internet-usage-based gender gaps.",
+    relig: "Both men and women report lower average levels of religious activity over time. However, rather than manifest as a gradual trend, there appears to be a level shift around 2012-2014 and stability since. This is one of the few indices where the country level gender gaps are large and remain so even at the end of the time range. Furthermore, the gender gap is strong whether the country as a whole is particularly religious or not.",
+    social: "The slim gap between average male and female levels confirms the lack of a striking gender-based difference in average social activity. However, it is worth noting that the gender-based gap is typically higher when men report more social activity than women versus when women report more social activity than men. The distribution of gaps, meanwhile, appears stable, meaning there is scant evidence of overall convergence toward equality in this domain.",
+    finstab: "While the gender gap in financial stability is persistent, both genders benefit from the level positive shift in financial stability seen after 2012. There doesn’t appear to be a relationship between a country’s aggregate reported financial stability and the gender gap in reported financial stability except in individual years. For example, 2014 and 2016 see countries with the lowest aggregate financial stability exhibiting the highest gender differentials.",
+    conservatism: "While average levels of conservatism hover around the same place and even decrease through the timeframe, there is a small but steady widening of the gender gap after 2012. We find both a widening of the average gap in conservatism between men and women and a growing number of countries for which male-reported conservatism is higher than female-reported conservatism.",
+    trust: "An interesting trend emerges when viewing the earliest years in the time range: in countries where men have more trust in institutions than women, trust in institutions is higher overall. Equally interesting is the fact that this correlation dissipates after 2010-2012, after which neither the gender gaps nor averages differ in distribution."
+  
   };
 
   const [text, setText] = useState(buttonTexts["wellbeing"]); // State to hold the text
@@ -145,7 +145,7 @@ const GraphTest = ({ variable }) => {
         .append("div")
         .attr("class", "tooltip")
         .style("position", "absolute")
-        .style("background", "rgba(128, 128, 128, 0.7)") // Gray transparent background
+        .style("background", "rgba(128, 128, 128, 0.9)") // Gray transparent background
         .style("color", "white") // White text
         .style("border", "1px solid #fff") // White border
         .style("padding", "5px")

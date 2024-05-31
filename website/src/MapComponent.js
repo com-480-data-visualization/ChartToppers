@@ -51,14 +51,16 @@ const MapComponent = ({ variable }) => {
   const [filteredData, setFilteredData] = useState({});
 
   const buttonTexts = {
-    wellbeing: "Wellbeing related text.",
-    internet: "Internet related text.",
-    relig: "Religion related text.",
-    social: "Social related text.",
-    finstab: "Financial stability related text.",
-    conservatism: "Conservatism related text.",
-    anti_imm: "Anti-immigration related text.",
-    trust: "Trust related text.",
+
+    wellbeing: "Men report higher levels of wellbeing than women almost across the board. In recent years, this difference appears to have been more pronounced in Western and Northern Europe than in Eastern Europe; one country-year data point drawing attention to this trend is Lithuania in 2018, home to the single year in which women report higher wellbeing than men. Another country of interest is France, in which men consistently report outsized wellbeing relative to women when compared to other countries on the map.",
+    internet: "Men tend to report more internet usage than woman, especially in the earliest years of the ESS. However, in northern and eastern European countries, the gender difference lessens and even reverses in the most recent years. One country of interest is Ireland, where women exclusively report more internet usage than men following the break in data availability between 2012 and 2014.",
+    relig: "Female respondents consistently report more religious activity than male respondents in every country save two: Turkey and Israel. The standard gender differential in this domain is more pronounced in the south and east, where time does not appear to be bringing the two genders closer together (see Portugal, for example).",
+    social: "Gender-based trends in social activity are less visible than those seen for other indices. That said, in northern Europe, women tend to be more social than men. Analysis elsewhere is perhaps best conducted at the country level. For example, in France and Germany, the more social gender is not consistent, while in Slovenia, men reported noticeably more social activity than women up until recent years.",
+    finstab: "Financial stability is another domain in which men tend to report higher values than women. It is also another domain where regional trends are not particularly pronounced. Country-level analysis is most compelling in this case. For example, we might ask ourselves why the financial stability gender gap in France experienced a sustained widening between 2014 and 2018 while in Belgium this gap slimmed.",
+    conservatism: "Men tend to report higher levels of conservatism, but it is by no means a universal rule. Indeed, in all years, we find 2-3 countries in which women report higher levels of conservatism than men. Portugal is most often one such country while Spain and Hungary are not far behind. Temporal analysis yields some interesting results: for example, Poland, Sweden, Germany, and France all experience their highest gap between male and female conservatism at the tail end of the time range, perhaps indicating the beginning of a new dynamic between gender and politics.",
+    trust: "Rarely is this particular gender differential pronounced, and rarely do we see either gender clearly exhibiting more trust on the continent in a given year. To report one trend, higher trust among women than men appears to be a more stable gap in eastern Europe than in the West - though this does not imply stability in the level of trust itself (see Poland’s recent dip).",
+
+    
   };
 
   const [text, setText] = useState(buttonTexts["wellbeing"]); // State to hold the text
