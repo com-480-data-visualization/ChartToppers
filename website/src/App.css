@@ -113,7 +113,6 @@ body {
 
 #map {
   width: 100%; 
-  height: 800px; 
   margin: 0 auto; 
   transform: scale(0.8); /* Scale the map */
   transform-origin: center; /* Keep the map centered while scaling */

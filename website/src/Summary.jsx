@@ -9,33 +9,33 @@ const Summary = ({ variable }) => {
       <div className="categories-container grid grid-cols-4 gap-4 mt-10">
         <div className="category-box bg-yellow-200 p-6 rounded text-black">
           <h3 className="text-xl font-bespoke font-medium">Wellbeing</h3>
-          <p>Wellbeing levels have shown resilience over two decades, with notable increases among older Europeans contrasted by recent declines among the youth.</p>
+          <p>Wellbeing levels have shown resilience across all age cohorts over two decades - as has the higher rate of wellbeing among men relative to women.</p>
         </div>
-        <div className="category-box bg-[#04349c] text-white p-6 rounded">
+        <div className="category-box bg-[#365db0] text-white p-6 rounded">
           <h3 className="text-xl font-bespoke font-medium">Internet</h3>
           <p>Internet usage has surged across all demographics, reaching near parity between genders by 2020, especially in Northern and Eastern Europe.</p>
         </div>
         <div className="category-box bg-yellow-200 p-6 rounded text-black">
           <h3 className="text-xl font-bespoke font-medium">Religion</h3>
-          <p>Religious activity has consistently declined across Europe, yet remains deeply gendered, with women persistently more devout than men.</p>
+          <p>Religious activity has slowly declined across Europe, yet remains deeply gendered, with women persistently more devout than men.</p>
         </div>
-        <div className="category-box bg-[#04349c] text-white p-6 rounded">
+        <div className="category-box bg-[#365db0] text-white p-6 rounded">
           <h3 className="text-xl font-bespoke font-medium">Social</h3>
-          <p>Social activities display minimal gender discrepancies, though regional variations suggest a complex interplay of social behaviors across Europe.</p>
+          <p>Social activities display minimal gender discrepancies, though where gender gaps do exist, the largest gaps are typically reserved for countries where men report more social activity than women.</p>
         </div>
       </div>
       <div className="categories-container grid grid-cols-3 gap-4 mt-10 text-black">
         <div className="category-box bg-yellow-200 p-6 rounded">
           <h3 className="text-xl font-bespoke font-medium">Financial Stability</h3>
-          <p>Financial stability perceptions have improved post-2012, revealing subtle yet significant shifts without a clear correlation to gender disparities.</p>
+          <p>Financial stability perceptions have improved post-2012, revealing a significant shift without a clear correlation to gender disparities.</p>
         </div>
-        <div className="category-box bg-[#04349c] text-white p-6 rounded">
+        <div className="category-box bg-[#365db0] text-white p-6 rounded">
           <h3 className="text-xl font-bespoke font-medium">Conservatism</h3>
-          <p>Despite general stability in self-reported conservatism, the last decade has seen a subtle but steady expansion in gender differences, particularly in specific European countries.</p>
+          <p>Despite stability in aggregate self-reported conservatism, the last few years have seen a sudden expansion in gender differences as women align with conservatism less.</p>
         </div>
         <div className="category-box bg-yellow-200 p-6 rounded text-black">
           <h3 className="text-xl font-bespoke font-medium">Trust</h3>
-          <p>Trust in institutions has recovered from a mid-range dip, with Eastern Europe showing a more pronounced and stable gender gap favoring women's higher trust levels.</p>
+          <p>There was a time when higher trust in institutions among men relative to women implied a country’s higher trust in institutions overall. That time is no more.</p>
         </div>
       </div>
     </div>

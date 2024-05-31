@@ -6,60 +6,49 @@ const Banner = ({ setVariable, showBanner }) => {
 
   const categories = {
     wellbeing: [
-      { key: "happy", description: "how happy are you?" },
-      { key: "health", description: "how healthy are you?" },
-      { key: "safety", description: "how concern about safety after dark?" },
-      { key: "satisfaction", description: "how satisfied are you with life?" },
+      { key: "happy", description: "Are you happy?" },
+      { key: "health", description: "Are you healthy?" },
+      { key: "safety", description: "Are you satisfied with your life?" },
+      { key: "satisfaction", description: "How safe do you feel outside after dark?" },
     ],
     internet: [
-      { key: "netuse", description: "personal internet use, how often?" },
-      { key: "netuseofc", description: "internet use, how often?" },
+      { key: "netuse", description: "How often do you use the internet?" },
     ],
     relig: [
-      { key: "pray", description: "how often do you pray?" },
+      { key: "pray", description: "How often do you pray?" },
       {
         key: "rgattend",
-        description: "how often do you attend religious services?",
+        description: "How often do you attend religious services?",
       },
-      { key: "religiosity", description: "how religious are you?" },
+      { key: "religiosity", description: "How religious are you?" },
     ],
     social: [
       {
         key: "socact",
-        description: "how often do you take part in social activities?",
+        description: "How often do you take part in social activities relative to others your age?",
       },
       {
         key: "socmeet",
-        description: "how often you meet with friends and relatives?",
-      },
-      {
-        key: "intpers",
-        description:
-          "how many people you discuss intimate and personal matters?",
+        description: "How often do you meet socially with friends, relatives, or colleagues?",
       },
     ],
     finstab: [
-      { key: "incfeel", description: "feeling about household’s income?" },
+      { key: "incfeel", description: "How good do you feel about your income?" },
       {
         key: "inccomp",
-        description: "household's total net income, all sources (deciles)",
+        description: "How high is your income bracket?",
       },
     ],
     conservatism: [
       {
         key: "polviews",
-        description: "political views, liberal to conservative scale?",
+        description: "How conservative are you?",
       },
-      {
-        key: "govtrole",
-        description: "role of government in individuals’ lives?",
-      },
-      { key: "tradvalues", description: "importance of traditional values?" },
     ],
     trust: [
-      { key: "trustpeople", description: "general trust in people" },
-      { key: "trustgov", description: "trust in government" },
-      { key: "trustmedia", description: "trust in media" },
+      { key: "trustpeople", description: "How much trust do you have in in the legal system?" },
+      { key: "trustgov", description: "How much trust do you have in the police?" },
+      { key: "trustmedia", description: "How much trust do you have in parliament?" },
     ],
   };
 

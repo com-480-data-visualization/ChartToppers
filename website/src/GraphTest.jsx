@@ -302,8 +302,8 @@ const GraphTest = ({ variable }) => {
   }, [variable]);
 
   return (
-    <div className="flex-col justify-center">
-      <p className="mb-12 font-bespoke font-light">{text}</p>
+    <>
+      <p className="mb-12 font-bespoke font-light text-justify mt-4 w-3/4">{text}</p>
       <svg ref={d3Container} />
 
       <div
@@ -331,7 +331,7 @@ const GraphTest = ({ variable }) => {
         />
       </div>
       
-    </div>
+    </>
   );
 };
 

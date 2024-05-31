@@ -415,8 +415,8 @@ const MapComponent = ({ variable }) => {
   }, [variable]);
 
   return (
-    <div>
-      <p className="mb-12 font-bespoke font-light">{text}</p>
+    <>
+      <p className="mb-12 font-bespoke font-light text-xl text-justify w-full">{text}</p>
       <svg ref={ref} />
       <div className="flex">
         <select
@@ -455,7 +455,7 @@ const MapComponent = ({ variable }) => {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

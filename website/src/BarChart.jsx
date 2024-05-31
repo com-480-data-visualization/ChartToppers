@@ -8,13 +8,20 @@ const BarChart = ({ variable }) => {
   const chartRef = useRef(null);
 
   const buttonTexts = {
-    wellbeing: "Throughout the past two decades, wellbeing (as measured by self-reported health, happiness, safety, and life satisfaction) and age have been negatively correlated. Even so, wellbeing has remained high relative to the other ESS indices we explore, and has even experienced a small increase since 2010. This increase was sustained for respondents aged 40 and above and, in 2020, saw a dip among younger respondents.",
-    internet: "Perhaps unsurprisingly, internet use has risen dramatically since 2002. Younger respondents saw their fastest usage increase in the aughts and have effectively topped the scales since 2016. Only the oldest respondents have not yet reported extremely frequent usage, though their uptake in the past two decades has been steady.",
-    relig: "Religious activity (as measured by levels of self-reported prayer and religious attendance) has seen a small but unmistakable decrease in average level since 2002. This decrease is seen across all age groups. While the oldest respondents report the largest decrease over time, the positive correlation between age and religious activity means the oldest respondents’ status as the most religious cohort is unthreatened across time.",
-    social: "There are two salient observations about respondents’ social activity (as measured by engagement in social activities and meetings with friends): (1) age and social participation are negatively correlated and (2) self-reported social activity has remained stable over time. The only cohort for which social activity may be trending downward is the youngest – though data from after the covid-era final survey may reflect a temporary dip.  ",
-    finstab: "Financial stability, as measured by self-reported income levels and feelings about income levels, is one of the few indices that exhibits a sustained level shift during the measured time range. Specifically, all age groups see a boost in perceived financial stability between the 2012 and 2014 ESS rounds. This could be related to the quantitative easing from the ECB (note the ‘2014’ round collected data between 2014 and 2015) and emergence from the austerity of the early 2010s. Separately, most cohorts report similar levels of financial stability to one another in any given year; only the oldest cohort, which reports more financial vulnerability, stands apart.",
-    conservatism: "One of the more surprising observations across all views present in this figure is that Europe does not report any noticeable trends at all in self-reported levels of conservatism. Neither age cohort nor time intra-age-cohort exhibit a relationship with the index. In one sense, this pours cold water over the notion that Europe has been becoming more conservative since the mid-2010s (or, indeed, any sweeping statements about the average European’s political view). That said, it’s important to remember that this a self-reported metric, and that respondents may wish to be perceived as more moderate than they really are. ",
-    trust: "Trust in the legal system, police, and parliament saw a drawn-out if minor dip across all age cohorts between 2002 and 2012. From the 2014 round and onward, this dip was swiftly reversed. While the youngest cohort reached new highs in trust in the later period, other generations reached but did not surpass levels of trust seen when the ESS was launched.",
+    wellbeing:
+      "Throughout the past two decades, wellbeing (as measured by self-reported health, happiness, safety, and life satisfaction) and age have been negatively correlated. Even so, wellbeing has remained high relative to the other ESS indices we explore, and has even experienced a small increase since 2010. This increase was sustained for respondents aged 40 and above and, in 2020, saw a dip among younger respondents.",
+    internet:
+      "Perhaps unsurprisingly, internet use has risen dramatically since 2002. Younger respondents saw their fastest usage increase in the aughts and have effectively topped the scales since 2016. Only the oldest respondents have not yet reported extremely frequent usage, though their uptake in the past two decades has been steady.",
+    relig:
+      "Religious activity (as measured by levels of self-reported prayer and religious attendance) has seen a small but unmistakable decrease in average level since 2002. This decrease is seen across all age groups. While the oldest respondents report the largest decrease over time, the positive correlation between age and religious activity means the oldest respondents’ status as the most religious cohort is unthreatened across time.",
+    social:
+      "There are two salient observations about respondents’ social activity (as measured by engagement in social activities and meetings with friends): (1) age and social participation are negatively correlated and (2) self-reported social activity has remained stable over time. The only cohort for which social activity may be trending downward is the youngest – though data from after the covid-era final survey may reflect a temporary dip.  ",
+    finstab:
+      "Financial stability, as measured by self-reported income levels and feelings about income levels, is one of the few indices that exhibits a sustained level shift during the measured time range. Specifically, all age groups see a boost in perceived financial stability between the 2012 and 2014 ESS rounds. This could be related to the quantitative easing from the ECB (note the ‘2014’ round collected data between 2014 and 2015) and emergence from the austerity of the early 2010s. Separately, most cohorts report similar levels of financial stability to one another in any given year; only the oldest cohort, which reports more financial vulnerability, stands apart.",
+    conservatism:
+      "One of the more surprising observations across all views present in this figure is that Europe does not report any noticeable trends at all in self-reported levels of conservatism. Neither age cohort nor time intra-age-cohort exhibit a relationship with the index. In one sense, this pours cold water over the notion that Europe has been becoming more conservative since the mid-2010s (or, indeed, any sweeping statements about the average European’s political view). That said, it’s important to remember that this a self-reported metric, and that respondents may wish to be perceived as more moderate than they really are. ",
+    trust:
+      "Trust in the legal system, police, and parliament saw a drawn-out if minor dip across all age cohorts between 2002 and 2012. From the 2014 round and onward, this dip was swiftly reversed. While the youngest cohort reached new highs in trust in the later period, other generations reached but did not surpass levels of trust seen when the ESS was launched.",
   };
 
   const [text, setText] = useState(buttonTexts["wellbeing"]); // State to hold the text
@@ -116,7 +123,6 @@ const BarChart = ({ variable }) => {
         // Reset all bars to initial opacity
         svg.selectAll("rect").attr("opacity", 1);
       });
-
 
     const tooltip = d3
       .select("body")
@@ -244,12 +250,10 @@ const BarChart = ({ variable }) => {
   }, [values, variable]);
 
   return (
-    <div className="flex w-full ml-10">
-      <div className="flex flex-col">
-        <p className="mb-4 font-bespoke font-light">{text}</p>
-        <svg ref={chartRef} width="960" height="550"></svg>
-      </div>
-    </div>
+    <>
+      <p className="mt-4 font-bespoke font-light w-3/4 text-justify mb-4">{text}</p>
+      <svg ref={chartRef} width="960" height="550"></svg>
+    </>
   );
 };
 
