@@ -166,9 +166,7 @@ The deliverable for milestone 3 can be found here:
 
 **[Website](https://com-480-data-visualization.github.io/ChartToppers/)**
 
-The website is hosted by Github Pages and is available [here](https://com-480-data-visualization.github.io/ChartToppers/).
-
-[ProcessBook_ChartToppers.pdf]()
+**[ProcessBook_ChartToppers.pdf](https://github.com/com-480-data-visualization/ChartToppers/blob/master/ProcessBook_ChartToppers.pdf)**
 
 **Getting the Website Running (Development Mode):**
 
