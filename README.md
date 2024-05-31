@@ -162,11 +162,32 @@ The deliverables for milestone 2 can be found here:
 
 The deliverable for milestone 3 can be found here:
 
-[Screencast](https://drive.google.com/file/d/1i6mzmwY3JM1qYD1PcLklppdw9gS2yAb6/view?usp=sharing)
+**[Screencast](https://drive.google.com/file/d/1i6mzmwY3JM1qYD1PcLklppdw9gS2yAb6/view?usp=sharing)**
 
-[Website](https://com-480-data-visualization.github.io/ChartToppers/)
+**[Website](https://com-480-data-visualization.github.io/ChartToppers/)**
+The website is hosted by Github Pages and is available [here](https://com-480-data-visualization.github.io/ChartToppers/).
 
 [ProcessBook_ChartToppers.pdf]()
+
+**Getting the Website Running (Development Mode):**
+
+1. Clone the repository.
+2. Navigate to the website's folder on your computer.
+3. Run these commands in order:
+    - npm install (installs necessary tools)
+    - npm run dev (starts the development server)
+The terminal will show the local website's URL where you can view it.
+
+**Building the Website for Production:**
+
+Clone the repository if you haven't already (get a copy of the code).
+Go to the website's folder.
+Run these commands in order:
+- npm install (installs necessary tools)
+- npm run build (creates a production-ready version)
+
+**Data**
+The data is available in the folder website/src/data.
 
 ## Late policy
 
