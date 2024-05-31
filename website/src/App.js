@@ -80,12 +80,12 @@ function App() {
             visualizations that distill a sprawling survey into valuable
             insights – and hopefully spark a conversation about European
             society’s future along the way. Throughout this page, we visualize
-            indices for seven different topics concerning the lives of
+            average indices representing seven different categories concerning the lives of
             Europeans. Navigate your curser to the left to see possibilities.
-            Each topic’s index is created by scaling responses for a set of
-            similar ESS questions between 1 (low) and 6 (high) before averaging
-            by gender, age, and/or year. Hover over a topic to see the set of
-            survey questions.
+            Each category’s average index is created by scaling responses for a set of
+            ESS questions between 1 (low) and 6 (high) before aggregating
+            by gender, age, and/or year. Hover over a category to see the set of
+            survey questions that inform a category's average index.
           </p>
         </div>
       </header>
@@ -126,12 +126,14 @@ function App() {
           Ranking the Gender Divide Across Europe
         </h2>
         <p className="text-base w-3/4 mt-10 text-container font-bespoke font-light text-justify">
-          We hope you enjoyed this study of Europeans male, female, young, and
-          old! Remember to select another category on the left and continue
-          investigating!
+          Our final view lets you compare countries side-by-side and observe 
+          averages by gender over time. It ranks countries based on the chosen 
+          category's gender gap in a specific year. Hover over a dot to see the 
+          country’s exact index values and how the gender gap breaks down by age group.
         </p>
         <GraphTest variable={variable} />
       </section>
+      <p className="text-lg w-3/4 mt-10 text-center font-bespoke font-light"><br></br><br></br><br></br>We hope you enjoyed this study of Europeans male, female, young, and old! <br></br><br></br>Remember to select another category on the left and continue investigating!</p>
       <section className="App-header">
         <Summary />
       </section>
