@@ -83,7 +83,7 @@ const Banner = ({ setVariable, showBanner }) => {
   return (
     <div className="fixed top-1/2 left-0 transform -translate-y-1/2 z-50">
       {!showBanner && (
-        <div className="flex items-center text-[#04349c] p-2 transition-transform duration-500 ease-in-out">
+        <div className='flex items-center text-[#04349c] p-2 transition-transform duration-500 ease-in-out'>
           <div className="flex items-center animate-pulse">
             <svg
               className="w-10 h-10"

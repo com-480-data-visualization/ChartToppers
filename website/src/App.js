@@ -61,7 +61,7 @@ function App() {
         </p>
         <div className="description">
           <p
-            className={`font-bespoke font-light text-justify  ${
+            className={`font-bespoke font-light text-justify text-2xl mt-10 ${
               theme === "light" ? "text-[#00006e]" : "text-yellow-100"
             }`}
           >
@@ -71,7 +71,7 @@ function App() {
             generation and gender.
           </p>
           <p
-            className={`font-bespoke font-light mt-4 text-justify ${
+            className={`font-bespoke font-light mt-4 text-justify text-2xl ${
               theme === "light" ? "text-[#00006e]" : "text-yellow-100"
             }`}
           >
